@@ -1,8 +1,14 @@
+<script setup>
+  defineProps({
+    pokemons: Array,
+  });
+</script>
+
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
       <a class="navbar-brand permanent-marker-regular" href="#">
-        <img width="20px" src="../assets/pokebola.png" alt="">
+        <img width="20px" src="../assets/pokebola.png" alt="" />
         Pokedex
       </a>
       <button
@@ -28,12 +34,10 @@
               <input type="text" class="form-control" />
             </div>
             <div class="input-group nav-item">
-              <label class="input-group-text">Espécie</label>
+              <label class="input-group-text">Tipo</label>
               <select class="form-select">
                 <option value="">Selecione...</option>
-                <option value="Cachorro">Cachorro</option>
-                <option value="Gato">Gato</option>
-                <option value="Pássaro">Pássaro</option>
+                <option v-for="pokemon in pokemons" :key="pokemon.id" :value="pokemon.type">{{ pokemon.type }}</option>
               </select>
             </div>
           </form>
@@ -44,7 +48,7 @@
 </template>
 
 <style scoped>
-  ul {
-    margin-top: 8px;
-  }
+ul {
+  margin-top: 8px;
+}
 </style>
