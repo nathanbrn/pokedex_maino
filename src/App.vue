@@ -47,15 +47,14 @@ const pokemons = [
     ],
   },
 ];
-
 </script>
 
 <template>
   <NavBar :pokemons="pokemons" />
   <div class="container">
     <div class="row">
-      <Card :pokemons="pokemons"/>
-      <Modal :pokemons="pokemons"/>
+      <Card />
+      <Modal />
     </div>
   </div>
 </template>

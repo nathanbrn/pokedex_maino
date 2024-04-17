@@ -1,9 +1,12 @@
 <script setup>
-defineProps({
-  pokemons: Array,
-});
+  import { computed } from 'vue';
+import { useStore } from 'vuex';
 
-const openModal = () => {
+const store = useStore();
+const pokemons = computed(() => store.state.pokemons);
+
+const openModal = (pokemonId) => {
+  store.commit("setCurrentId", pokemonId);
   const modal = document.getElementById("exampleModal");
   const modalInstance = new bootstrap.Modal(modal);
   modalInstance.show();
@@ -16,7 +19,7 @@ const openModal = () => {
     :key="pokemon.id"
     class="card mt-4 mx-2 selected col"
     style="width: 12rem; cursor: pointer"
-    @click="openModal"
+    @click="openModal(pokemon.id)"
   >
     <div>
       <div></div>

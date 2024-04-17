@@ -1,7 +1,10 @@
 <script setup>
-  defineProps({
-    pokemons: Array,
-  });
+import { computed } from "vue";
+import { useStore } from "vuex";
+
+  const store = useStore();
+  const pokemons = computed(() => store.state.pokemons);
+  const currentId = computed(() => store.state.CurrentId);
 </script>
 
 <template>
@@ -23,7 +26,9 @@
             aria-label="Close"
           ></button>
         </div>
-        <div class="modal-body">...</div>
+        <div class="modal-body">
+          <p>ID do pokemon selecionado: {{ currentId }}</p>
+        </div>
         <div class="modal-footer">
           <button
             type="button"

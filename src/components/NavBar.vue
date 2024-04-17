@@ -1,13 +1,18 @@
 <script setup>
-  defineProps({
-    pokemons: Array,
-  });
+import { useStore } from 'vuex';
+
+const store = useStore();
+const pokemons = store.state.pokemons;
 </script>
 
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-      <a class="navbar-brand permanent-marker-regular" href="#">
+      <a
+        class="navbar-brand permanent-marker-regular"
+        style="cursor: default"
+        href=""
+      >
         <img width="20px" src="../assets/pokebola.png" alt="" />
         Pokedex
       </a>
@@ -37,7 +42,13 @@
               <label class="input-group-text">Tipo</label>
               <select class="form-select">
                 <option value="">Selecione...</option>
-                <option v-for="pokemon in pokemons" :key="pokemon.id" :value="pokemon.type">{{ pokemon.type }}</option>
+                <option
+                  v-for="pokemon in pokemons"
+                  :key="pokemon.id"
+                  :value="pokemon.type"
+                >
+                  {{ pokemon.type }}
+                </option>
               </select>
             </div>
           </form>
