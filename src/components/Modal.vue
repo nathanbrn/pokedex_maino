@@ -40,7 +40,7 @@ console.log(evolucoes.value);
       <div class="modal-content">
         <div class="modal-header">
           <img
-            width="20rem"
+            width="30rem"
             class="me-2"
             :src="currentPokemon?.sprites.shotdown.front_default"
             alt=""
@@ -48,6 +48,12 @@ console.log(evolucoes.value);
           <h1 class="modal-title fs-5 text-capitalize" id="exampleModalLabel">
             {{ currentPokemon?.name }}
           </h1>
+          <img
+            width="30rem"
+            class="ms-2"
+            :src="currentPokemon?.sprites.shotdown.back_default"
+            alt=""
+          />
           <button
             type="button"
             class="btn-close"
