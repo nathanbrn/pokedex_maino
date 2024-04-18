@@ -1,8 +1,10 @@
 <script setup>
+import { computed } from 'vue';
 import { useStore } from 'vuex';
 
 const store = useStore();
-const pokemons = store.state.pokemons;
+const pokemons = computed(() => store.state.pokemons);
+
 </script>
 
 <template>
@@ -38,16 +40,31 @@ const pokemons = store.state.pokemons;
               <span class="input-group-text">ID</span>
               <input type="text" class="form-control" />
             </div>
-            <div class="input-group nav-item">
+            <div class="input-group me-2 nav-item">
               <label class="input-group-text">Tipo</label>
               <select class="form-select">
-                <option value="">Selecione...</option>
+                <option value="" selected>Selecione...</option>
+                <template v-for="pokemon in pokemons">
+                  <option
+                    v-for="typeP in pokemon.types"
+                    :key="pokemon.id"
+                    :value="typeP.type.name"
+                  >
+                    {{ typeP.type.name }}
+                  </option>
+                </template>
+              </select>
+            </div>
+            <div class="input-group nav-item">
+              <label class="input-group-text">Espécie</label>
+              <select class="form-select">
+                <option value="" selected>Selecione...</option>
                 <option
                   v-for="pokemon in pokemons"
                   :key="pokemon.id"
-                  :value="pokemon.type"
+                  :value="pokemon.species.name"
                 >
-                  {{ pokemon.type }}
+                  {{ pokemon.species.name }}
                 </option>
               </select>
             </div>

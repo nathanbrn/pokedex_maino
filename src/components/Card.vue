@@ -1,6 +1,6 @@
 <script setup>
-  import { computed } from 'vue';
-import { useStore } from 'vuex';
+import { computed } from "vue";
+import { useStore } from "vuex";
 
 const store = useStore();
 const pokemons = computed(() => store.state.pokemons);
@@ -26,7 +26,7 @@ const openModal = (pokemonId) => {
       <div class="p-3">
         <div>
           <img
-            :src="pokemon.images[0]"
+            :src="pokemon.sprites.other.dream_world.front_default"
             class="d-block w-100"
             :alt="pokemon.name"
           />
@@ -34,7 +34,8 @@ const openModal = (pokemonId) => {
       </div>
     </div>
     <div class="card-body">
-      <h5 class="card-title text-center">{{ pokemon.name }}</h5>
+      <h5 class="card-title text-center text-capitalize">{{ pokemon.name }}</h5>
+      <p v-for="typeP in pokemon.types">{{ typeP.type.name }}</p>
     </div>
   </div>
 </template>
