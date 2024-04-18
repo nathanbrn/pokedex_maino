@@ -5,7 +5,7 @@ let pokemons = [];
 
 const getPokemons = async () => {
   try {
-    const response = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=151");
+    const response = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=10");
     const { data } = response;
     const { results } = data;
     return results;
@@ -17,15 +17,17 @@ const getPokemons = async () => {
 
 (async () => {
   const pokemonsMock = await getPokemons();
-  pokemonsMock.map((pokemon) => {
-    axios.get(pokemon.url)
-      .then(({ data }) => {
-        pokemons.push(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-  })
+  try {
+    const pokemonPromises = pokemonsMock.map(async (pokemon) => {
+      const response = await axios.get(pokemon.url);
+      return response.data;
+    });
+    const resolvedPokemons = await Promise.all(pokemonPromises);
+    // Agora que todas as chamadas assíncronas foram concluídas, podemos atualizar o estado Vuex
+    store.commit('setPokemons', resolvedPokemons);
+  } catch (error) {
+    console.error(error);
+  }
 })();
 
 export default createStore({
@@ -387,6 +389,10 @@ export default createStore({
         weight: null,
       },
     ],
+    nameFilter: '',
+    idFilter: '',
+    typeFilter: '',
+    speciesFilter: '',
   },
   getters: {},
   mutations: {
@@ -395,6 +401,18 @@ export default createStore({
     },
     setPokemonCurrent(state, pokemon) {
       state.pokemonCurrent = pokemon;
+    },
+    setNameFilter(state, value) {
+      state.nameFilter = value;
+    },
+    setIdFilter(state, value) {
+      state.idFilter = value;
+    },
+    setTypeFilter(state, value) {
+      state.typeFilter = value;
+    },
+    setSpeciesFilter(state, value) {
+      state.speciesFilter = value;
     },
   },
   actions: {},

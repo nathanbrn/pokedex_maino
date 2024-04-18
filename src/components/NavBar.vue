@@ -5,6 +5,22 @@ import { useStore } from 'vuex';
 const store = useStore();
 const pokemons = computed(() => store.state.pokemons);
 
+const updateNameFilter = (event) => {
+  store.commit('setNameFilter', event.target.value);
+};
+
+const updateIdFilter = (event) => {
+  store.commit('setIdFilter', event.target.value);
+};
+
+const updateTypeFilter = (event) => {
+  store.commit('setTypeFilter', event.target.value);
+};
+
+const updateSpeciesFilter = (event) => {
+  store.commit('setSpeciesFilter', event.target.value);
+};
+
 </script>
 
 <template>
@@ -34,15 +50,15 @@ const pokemons = computed(() => store.state.pokemons);
           <form class="d-flex">
             <div class="input-group me-2 nav-item">
               <span class="input-group-text">Nome</span>
-              <input type="text" class="form-control" />
+              <input type="text" class="form-control" @input="updateNameFilter" />
             </div>
             <div class="input-group me-2 nav-item">
               <span class="input-group-text">ID</span>
-              <input type="text" class="form-control" />
+              <input type="text" class="form-control" @input="updateIdFilter" />
             </div>
             <div class="input-group me-2 nav-item">
               <label class="input-group-text">Tipo</label>
-              <select class="form-select">
+              <select class="form-select" @change="updateTypeFilter">
                 <option value="" selected>Selecione...</option>
                 <template v-for="pokemon in pokemons">
                   <option
@@ -57,7 +73,7 @@ const pokemons = computed(() => store.state.pokemons);
             </div>
             <div class="input-group nav-item">
               <label class="input-group-text">Espécie</label>
-              <select class="form-select">
+              <select class="form-select" @change="updateSpeciesFilter">
                 <option value="" selected>Selecione...</option>
                 <option
                   v-for="pokemon in pokemons"
