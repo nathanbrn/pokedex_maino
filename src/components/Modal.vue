@@ -1,6 +1,7 @@
 <script setup>
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { useStore } from "vuex";
+import axios from "axios";
 
 const store = useStore();
 const pokemons = computed(() => store.state.pokemons);
@@ -9,6 +10,22 @@ const currentId = computed(() => store.state.CurrentId);
 const currentPokemon = computed(() =>
   pokemons.value.find((pokemon) => pokemon.id === currentId.value)
 );
+
+const evolucoes = ref(null);
+
+if (currentId.value) {
+  axios
+  .get(`https://pokeapi.co/api/v2/pokemon-species/${currentId.value}`)
+  .then(({ data }) => {
+    const { results } = data;
+    evolucoes.value = results.evolution_chain;
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+}
+
+console.log(evolucoes.value);
 </script>
 
 <template>
@@ -25,7 +42,7 @@ const currentPokemon = computed(() =>
           <img
             width="20rem"
             class="me-2"
-            :src="currentPokemon?.sprites.other.dream_world.front_default"
+            :src="currentPokemon?.sprites.shotdown.front_default"
             alt=""
           />
           <h1 class="modal-title fs-5 text-capitalize" id="exampleModalLabel">
@@ -40,13 +57,22 @@ const currentPokemon = computed(() =>
         </div>
         <div class="modal-body">
           <div class="card mb-3">
-            <!-- <div id="carouselExample" class="carousel slide">
+            <div id="carouselExample" class="carousel slide">
               <div class="carousel-inner">
                 <div
-                  v-for="image in currentPokemon?.images"
                   class="carousel-item active"
                 >
-                  <img :src="image" class="card-img-top" :alt="currentPokemon?.name" />
+                  <img :src="currentPokemon?.sprites.other.dream_world.front_default" class="card-img-top" :alt="currentPokemon?.name" />
+                </div>
+                <div
+                  class="carousel-item"
+                >
+                  <img :src="currentPokemon?.sprites.home.front_default" class="card-img-top" :alt="currentPokemon?.name" />
+                </div>
+                <div
+                  class="carousel-item"
+                >
+                  <img :src="currentPokemon?.sprites.official_artwork.front_default" class="card-img-top" :alt="currentPokemon?.name" />
                 </div>
               </div>
               <button
@@ -73,20 +99,29 @@ const currentPokemon = computed(() =>
                 ></span>
                 <span class="visually-hidden">Next</span>
               </button>
-            </div> -->
+            </div>
 
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-              <p class="card-text">
-                <small class="text-body-secondary"
-                  >Last updated 3 mins ago</small
-                >
-              </p>
+              <h5 class="card-title">Movimentos de ataque</h5>
+              <ul>
+                <li v-for="move in currentPokemon?.moves" class="card-text text-capitalize">
+                  {{ move.move.name }}
+                </li>
+              </ul>
+              <br>
+              <h5 class="card-title">Evoluções</h5>
+              <ul>
+                <li v-for="evolucao in evolucoes" :key="evolucao.id" class="card-text text-capitalize">
+                  {{ evolucao }}
+                </li>
+              </ul>
+              <br>
+              <h5 class="card-title">Games</h5>
+              <ul>
+                <li v-for="(game, index) in currentPokemon?.game_indices" :key="index" class="card-text text-capitalize">
+                  {{ game.version.name }}
+                </li>
+              </ul>
             </div>
           </div>
         </div>

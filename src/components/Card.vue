@@ -77,6 +77,7 @@ const openModal = (pokemonId) => {
     class="card mt-4 mx-2 selected col"
     style="width: 12rem; cursor: pointer"
     @click="openModal(pokemon.id)"
+    ref="listEl"
   >
     <div>
       <div></div>

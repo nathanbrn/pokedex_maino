@@ -8,7 +8,7 @@ import Modal from "./components/Modal.vue";
 <template>
   <NavBar />
   <div class="container">
-    <div class="row">
+    <div class="mt-2 row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
       <Card />
       <Modal />
     </div>
