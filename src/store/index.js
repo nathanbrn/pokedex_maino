@@ -1,21 +1,4 @@
 import { createStore } from "vuex";
-import axios from "axios";
-
-let pokemons = [];
-
-const getPokemons = async () => {
-  try {
-    const response = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=10");
-    const { data } = response;
-    const { results } = data;
-    return results;
-  } catch (error) {
-    console.error(error.message);
-    return [];
-  }
-};
-
-
 
 export default createStore({
   state: {
@@ -31,22 +14,22 @@ export default createStore({
             game_index: 153,
             version: {
               name: "red",
-              url: "https://pokeapi.co/api/v2/version-group/red/"
-            }
+              url: "https://pokeapi.co/api/v2/version-group/red/",
+            },
           },
           {
             game_index: 153,
             version: {
               name: "blue",
-              url: "https://pokeapi.co/api/v2/version-group/blue/"
-            }
+              url: "https://pokeapi.co/api/v2/version-group/blue/",
+            },
           },
           {
             game_index: 153,
             version: {
               name: "yellow",
-              url: "https://pokeapi.co/api/v2/version-group/yellow/"
-            }
+              url: "https://pokeapi.co/api/v2/version-group/yellow/",
+            },
           },
         ],
         height: null,
@@ -58,66 +41,81 @@ export default createStore({
           {
             move: {
               name: "razor-wind",
-              url: "https://pokeapi.co/api/v2/move/13/"
+              url: "https://pokeapi.co/api/v2/move/13/",
             },
-            version_group_details: []
+            version_group_details: [],
           },
           {
             move: {
               name: "swords-dance",
-              url: "https://pokeapi.co/api/v2/move/14/"
+              url: "https://pokeapi.co/api/v2/move/14/",
             },
-            version_group_details: []
+            version_group_details: [],
           },
           {
             move: {
               name: "cut",
-              url: "https://pokeapi.co/api/v2/move/15/"
+              url: "https://pokeapi.co/api/v2/move/15/",
             },
-            version_group_details: []
+            version_group_details: [],
           },
         ],
         name: "bulbasaur",
         order: null,
+        past_abilities: [],
+        past_types: [],
         species: {
           name: "bulbasaur",
-          url: "https://pokeapi.co/api/v2/pokemon-species/1/"
+          url: "https://pokeapi.co/api/v2/pokemon-species/1/",
         },
         sprites: {
-          back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
+          back_default:
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/1.png",
           back_female: null,
-          back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/back-shiny.svg",
+          back_shiny:
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/1.png",
           back_shiny_female: null,
-          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-default.svg",
+          front_default:
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
           front_female: null,
-          front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-shiny.svg",
+          front_shiny:
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/1.png",
           front_shiny_female: null,
           other: {
             dream_world: {
-              front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
+              front_default:
+                "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
               front_female: null,
-            }
+            },
           },
           home: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png",
+            front_default:
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png",
             front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png",
-            front_shiny_female: null
+            front_shiny:
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png",
+            front_shiny_female: null,
           },
           official_artwork: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png"
+            front_default:
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+            front_shiny:
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png",
           },
           shotdown: {
-            back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/1.gif",
+            back_default:
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/1.gif",
             back_female: null,
-            back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/shiny/1.gif",
+            back_shiny:
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/shiny/1.gif",
             back_shiny_female: null,
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1.gif",
+            front_default:
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1.gif",
             front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/1.gif",
-            front_shiny_female: null
-          }
+            front_shiny:
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/1.gif",
+            front_shiny_female: null,
+          },
         },
         versions: {},
         stats: [],
@@ -126,16 +124,16 @@ export default createStore({
             slot: 1,
             type: {
               name: "grass",
-              url: "https://pokeapi.co/api/v2/type/12/"
-            }
+              url: "https://pokeapi.co/api/v2/type/12/",
+            },
           },
           {
             slot: 2,
             type: {
               name: "poison",
-              url: "https://pokeapi.co/api/v2/type/4/"
-            }
-          }
+              url: "https://pokeapi.co/api/v2/type/4/",
+            },
+          },
         ],
         weight: null,
       },
@@ -144,98 +142,113 @@ export default createStore({
         base_experience: null,
         cries: {},
         forms: [],
-        games_indices: [
+        game_indices: [
           {
-            game_index: 153,
+            game_index: 176,
             version: {
               name: "red",
-              url: "https://pokeapi.co/api/v2/version-group/red/"
-            }
+              url: "https://pokeapi.co/api/v2/version/1/",
+            },
           },
           {
-            game_index: 153,
+            game_index: 176,
             version: {
               name: "blue",
-              url: "https://pokeapi.co/api/v2/version-group/blue/"
-            }
+              url: "https://pokeapi.co/api/v2/version/2/",
+            },
           },
           {
-            game_index: 153,
+            game_index: 176,
             version: {
               name: "yellow",
-              url: "https://pokeapi.co/api/v2/version-group/yellow/"
-            }
+              url: "https://pokeapi.co/api/v2/version/3/",
+            },
           },
         ],
         height: null,
         held_items: [],
-        id: 1,
+        id: 4,
         is_default: true,
         location_area_encounters: [],
         moves: [
           {
             move: {
-              name: "razor-wind",
-              url: "https://pokeapi.co/api/v2/move/13/"
+              name: "mega-punch",
+              url: "https://pokeapi.co/api/v2/move/5/",
             },
-            version_group_details: []
+            version_group_details: [],
           },
           {
             move: {
-              name: "swords-dance",
-              url: "https://pokeapi.co/api/v2/move/14/"
+              name: "fire-punch",
+              url: "https://pokeapi.co/api/v2/move/7/",
             },
-            version_group_details: []
+            version_group_details: [],
           },
           {
             move: {
-              name: "cut",
-              url: "https://pokeapi.co/api/v2/move/15/"
+              name: "thunder-punch",
+              url: "https://pokeapi.co/api/v2/move/9/",
             },
-            version_group_details: []
+            version_group_details: [],
           },
         ],
-        name: "bulbasaur",
+        name: "charmander",
         order: null,
+        past_abilities: [],
+        past_types: [],
         species: {
-          name: "bulbasaur",
-          url: "https://pokeapi.co/api/v2/pokemon-species/1/"
+          name: "charmander",
+          url: "https://pokeapi.co/api/v2/pokemon-species/4/",
         },
         sprites: {
-          back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
+          back_default:
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/4.png",
           back_female: null,
-          back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/back-shiny.svg",
+          back_shiny:
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/4.png",
           back_shiny_female: null,
-          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-default.svg",
+          front_default:
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
           front_female: null,
-          front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-shiny.svg",
+          front_shiny:
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/4.png",
           front_shiny_female: null,
           other: {
             dream_world: {
-              front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
+              front_default:
+                "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/4.svg",
               front_female: null,
-            }
+            },
           },
           home: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png",
+            front_default:
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/4.png",
             front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png",
-            front_shiny_female: null
+            front_shiny:
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/4.png",
+            front_shiny_female: null,
           },
           official_artwork: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png"
+            front_default:
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
+            front_shiny:
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/4.png",
           },
           shotdown: {
-            back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/1.gif",
+            back_default:
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/4.gif",
             back_female: null,
-            back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/shiny/1.gif",
+            back_shiny:
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/shiny/4.gif",
             back_shiny_female: null,
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1.gif",
+            front_default:
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/4.gif",
             front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/1.gif",
-            front_shiny_female: null
-          }
+            front_shiny:
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/4.gif",
+            front_shiny_female: null,
+          },
         },
         versions: {},
         stats: [],
@@ -243,17 +256,10 @@ export default createStore({
           {
             slot: 1,
             type: {
-              name: "grass",
-              url: "https://pokeapi.co/api/v2/type/12/"
-            }
+              name: "fire",
+              url: "https://pokeapi.co/api/v2/type/10/",
+            },
           },
-          {
-            slot: 2,
-            type: {
-              name: "poison",
-              url: "https://pokeapi.co/api/v2/type/4/"
-            }
-          }
         ],
         weight: null,
       },
@@ -262,98 +268,113 @@ export default createStore({
         base_experience: null,
         cries: {},
         forms: [],
-        games_indices: [
+        game_indices: [
           {
-            game_index: 153,
+            game_index: 176,
             version: {
               name: "red",
-              url: "https://pokeapi.co/api/v2/version-group/red/"
-            }
+              url: "https://pokeapi.co/api/v2/version/1/",
+            },
           },
           {
-            game_index: 153,
+            game_index: 176,
             version: {
               name: "blue",
-              url: "https://pokeapi.co/api/v2/version-group/blue/"
-            }
+              url: "https://pokeapi.co/api/v2/version/2/",
+            },
           },
           {
-            game_index: 153,
+            game_index: 176,
             version: {
               name: "yellow",
-              url: "https://pokeapi.co/api/v2/version-group/yellow/"
-            }
+              url: "https://pokeapi.co/api/v2/version/3/",
+            },
           },
         ],
         height: null,
         held_items: [],
-        id: 1,
+        id: 7,
         is_default: true,
         location_area_encounters: [],
         moves: [
           {
             move: {
-              name: "razor-wind",
-              url: "https://pokeapi.co/api/v2/move/13/"
+              name: "mega-punch",
+              url: "https://pokeapi.co/api/v2/move/5/",
             },
-            version_group_details: []
+            version_group_details: [],
           },
           {
             move: {
-              name: "swords-dance",
-              url: "https://pokeapi.co/api/v2/move/14/"
+              name: "ice-punch",
+              url: "https://pokeapi.co/api/v2/move/8/",
             },
-            version_group_details: []
+            version_group_details: [],
           },
           {
             move: {
-              name: "cut",
-              url: "https://pokeapi.co/api/v2/move/15/"
+              name: "mega-kick",
+              url: "https://pokeapi.co/api/v2/move/25/",
             },
-            version_group_details: []
+            version_group_details: [],
           },
         ],
-        name: "bulbasaur",
+        name: "squirtle",
         order: null,
+        past_abilities: [],
+        past_types: [],
         species: {
-          name: "bulbasaur",
-          url: "https://pokeapi.co/api/v2/pokemon-species/1/"
+          name: "squirtle",
+          url: "https://pokeapi.co/api/v2/pokemon-species/7/",
         },
         sprites: {
-          back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
+          back_default:
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/7.png",
           back_female: null,
-          back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/back-shiny.svg",
+          back_shiny:
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/7.png",
           back_shiny_female: null,
-          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-default.svg",
+          front_default:
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
           front_female: null,
-          front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-shiny.svg",
+          front_shiny:
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/7.png",
           front_shiny_female: null,
           other: {
             dream_world: {
-              front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
+              front_default:
+                "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/7.svg",
               front_female: null,
-            }
+            },
           },
           home: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png",
+            front_default:
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/7.png",
             front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png",
-            front_shiny_female: null
+            front_shiny:
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/7.png",
+            front_shiny_female: null,
           },
           official_artwork: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png"
+            front_default:
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png",
+            front_shiny:
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/7.png",
           },
           shotdown: {
-            back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/1.gif",
+            back_default:
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/7.gif",
             back_female: null,
-            back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/shiny/1.gif",
+            back_shiny:
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/shiny/7.gif",
             back_shiny_female: null,
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1.gif",
+            front_default:
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/7.gif",
             front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/1.gif",
-            front_shiny_female: null
-          }
+            front_shiny:
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/7.gif",
+            front_shiny_female: null,
+          },
         },
         versions: {},
         stats: [],
@@ -361,2141 +382,10 @@ export default createStore({
           {
             slot: 1,
             type: {
-              name: "grass",
-              url: "https://pokeapi.co/api/v2/type/12/"
-            }
-          },
-          {
-            slot: 2,
-            type: {
-              name: "poison",
-              url: "https://pokeapi.co/api/v2/type/4/"
-            }
-          }
-        ],
-        weight: null,
-      },
-      {
-        abilities: [],
-        base_experience: null,
-        cries: {},
-        forms: [],
-        games_indices: [
-          {
-            game_index: 153,
-            version: {
-              name: "red",
-              url: "https://pokeapi.co/api/v2/version-group/red/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "blue",
-              url: "https://pokeapi.co/api/v2/version-group/blue/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "yellow",
-              url: "https://pokeapi.co/api/v2/version-group/yellow/"
-            }
-          },
-        ],
-        height: null,
-        held_items: [],
-        id: 1,
-        is_default: true,
-        location_area_encounters: [],
-        moves: [
-          {
-            move: {
-              name: "razor-wind",
-              url: "https://pokeapi.co/api/v2/move/13/"
+              name: "water",
+              url: "https://pokeapi.co/api/v2/type/11/",
             },
-            version_group_details: []
           },
-          {
-            move: {
-              name: "swords-dance",
-              url: "https://pokeapi.co/api/v2/move/14/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "cut",
-              url: "https://pokeapi.co/api/v2/move/15/"
-            },
-            version_group_details: []
-          },
-        ],
-        name: "bulbasaur",
-        order: null,
-        species: {
-          name: "bulbasaur",
-          url: "https://pokeapi.co/api/v2/pokemon-species/1/"
-        },
-        sprites: {
-          back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-          back_female: null,
-          back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/back-shiny.svg",
-          back_shiny_female: null,
-          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-default.svg",
-          front_female: null,
-          front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-shiny.svg",
-          front_shiny_female: null,
-          other: {
-            dream_world: {
-              front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-              front_female: null,
-            }
-          },
-          home: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png",
-            front_shiny_female: null
-          },
-          official_artwork: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png"
-          },
-          shotdown: {
-            back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/1.gif",
-            back_female: null,
-            back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/shiny/1.gif",
-            back_shiny_female: null,
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1.gif",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/1.gif",
-            front_shiny_female: null
-          }
-        },
-        versions: {},
-        stats: [],
-        types: [
-          {
-            slot: 1,
-            type: {
-              name: "grass",
-              url: "https://pokeapi.co/api/v2/type/12/"
-            }
-          },
-          {
-            slot: 2,
-            type: {
-              name: "poison",
-              url: "https://pokeapi.co/api/v2/type/4/"
-            }
-          }
-        ],
-        weight: null,
-      },
-      {
-        abilities: [],
-        base_experience: null,
-        cries: {},
-        forms: [],
-        games_indices: [
-          {
-            game_index: 153,
-            version: {
-              name: "red",
-              url: "https://pokeapi.co/api/v2/version-group/red/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "blue",
-              url: "https://pokeapi.co/api/v2/version-group/blue/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "yellow",
-              url: "https://pokeapi.co/api/v2/version-group/yellow/"
-            }
-          },
-        ],
-        height: null,
-        held_items: [],
-        id: 1,
-        is_default: true,
-        location_area_encounters: [],
-        moves: [
-          {
-            move: {
-              name: "razor-wind",
-              url: "https://pokeapi.co/api/v2/move/13/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "swords-dance",
-              url: "https://pokeapi.co/api/v2/move/14/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "cut",
-              url: "https://pokeapi.co/api/v2/move/15/"
-            },
-            version_group_details: []
-          },
-        ],
-        name: "bulbasaur",
-        order: null,
-        species: {
-          name: "bulbasaur",
-          url: "https://pokeapi.co/api/v2/pokemon-species/1/"
-        },
-        sprites: {
-          back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-          back_female: null,
-          back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/back-shiny.svg",
-          back_shiny_female: null,
-          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-default.svg",
-          front_female: null,
-          front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-shiny.svg",
-          front_shiny_female: null,
-          other: {
-            dream_world: {
-              front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-              front_female: null,
-            }
-          },
-          home: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png",
-            front_shiny_female: null
-          },
-          official_artwork: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png"
-          },
-          shotdown: {
-            back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/1.gif",
-            back_female: null,
-            back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/shiny/1.gif",
-            back_shiny_female: null,
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1.gif",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/1.gif",
-            front_shiny_female: null
-          }
-        },
-        versions: {},
-        stats: [],
-        types: [
-          {
-            slot: 1,
-            type: {
-              name: "grass",
-              url: "https://pokeapi.co/api/v2/type/12/"
-            }
-          },
-          {
-            slot: 2,
-            type: {
-              name: "poison",
-              url: "https://pokeapi.co/api/v2/type/4/"
-            }
-          }
-        ],
-        weight: null,
-      },
-      {
-        abilities: [],
-        base_experience: null,
-        cries: {},
-        forms: [],
-        games_indices: [
-          {
-            game_index: 153,
-            version: {
-              name: "red",
-              url: "https://pokeapi.co/api/v2/version-group/red/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "blue",
-              url: "https://pokeapi.co/api/v2/version-group/blue/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "yellow",
-              url: "https://pokeapi.co/api/v2/version-group/yellow/"
-            }
-          },
-        ],
-        height: null,
-        held_items: [],
-        id: 1,
-        is_default: true,
-        location_area_encounters: [],
-        moves: [
-          {
-            move: {
-              name: "razor-wind",
-              url: "https://pokeapi.co/api/v2/move/13/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "swords-dance",
-              url: "https://pokeapi.co/api/v2/move/14/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "cut",
-              url: "https://pokeapi.co/api/v2/move/15/"
-            },
-            version_group_details: []
-          },
-        ],
-        name: "bulbasaur",
-        order: null,
-        species: {
-          name: "bulbasaur",
-          url: "https://pokeapi.co/api/v2/pokemon-species/1/"
-        },
-        sprites: {
-          back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-          back_female: null,
-          back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/back-shiny.svg",
-          back_shiny_female: null,
-          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-default.svg",
-          front_female: null,
-          front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-shiny.svg",
-          front_shiny_female: null,
-          other: {
-            dream_world: {
-              front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-              front_female: null,
-            }
-          },
-          home: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png",
-            front_shiny_female: null
-          },
-          official_artwork: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png"
-          },
-          shotdown: {
-            back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/1.gif",
-            back_female: null,
-            back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/shiny/1.gif",
-            back_shiny_female: null,
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1.gif",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/1.gif",
-            front_shiny_female: null
-          }
-        },
-        versions: {},
-        stats: [],
-        types: [
-          {
-            slot: 1,
-            type: {
-              name: "grass",
-              url: "https://pokeapi.co/api/v2/type/12/"
-            }
-          },
-          {
-            slot: 2,
-            type: {
-              name: "poison",
-              url: "https://pokeapi.co/api/v2/type/4/"
-            }
-          }
-        ],
-        weight: null,
-      },
-      {
-        abilities: [],
-        base_experience: null,
-        cries: {},
-        forms: [],
-        games_indices: [
-          {
-            game_index: 153,
-            version: {
-              name: "red",
-              url: "https://pokeapi.co/api/v2/version-group/red/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "blue",
-              url: "https://pokeapi.co/api/v2/version-group/blue/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "yellow",
-              url: "https://pokeapi.co/api/v2/version-group/yellow/"
-            }
-          },
-        ],
-        height: null,
-        held_items: [],
-        id: 1,
-        is_default: true,
-        location_area_encounters: [],
-        moves: [
-          {
-            move: {
-              name: "razor-wind",
-              url: "https://pokeapi.co/api/v2/move/13/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "swords-dance",
-              url: "https://pokeapi.co/api/v2/move/14/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "cut",
-              url: "https://pokeapi.co/api/v2/move/15/"
-            },
-            version_group_details: []
-          },
-        ],
-        name: "bulbasaur",
-        order: null,
-        species: {
-          name: "bulbasaur",
-          url: "https://pokeapi.co/api/v2/pokemon-species/1/"
-        },
-        sprites: {
-          back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-          back_female: null,
-          back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/back-shiny.svg",
-          back_shiny_female: null,
-          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-default.svg",
-          front_female: null,
-          front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-shiny.svg",
-          front_shiny_female: null,
-          other: {
-            dream_world: {
-              front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-              front_female: null,
-            }
-          },
-          home: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png",
-            front_shiny_female: null
-          },
-          official_artwork: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png"
-          },
-          shotdown: {
-            back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/1.gif",
-            back_female: null,
-            back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/shiny/1.gif",
-            back_shiny_female: null,
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1.gif",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/1.gif",
-            front_shiny_female: null
-          }
-        },
-        versions: {},
-        stats: [],
-        types: [
-          {
-            slot: 1,
-            type: {
-              name: "grass",
-              url: "https://pokeapi.co/api/v2/type/12/"
-            }
-          },
-          {
-            slot: 2,
-            type: {
-              name: "poison",
-              url: "https://pokeapi.co/api/v2/type/4/"
-            }
-          }
-        ],
-        weight: null,
-      },
-      {
-        abilities: [],
-        base_experience: null,
-        cries: {},
-        forms: [],
-        games_indices: [
-          {
-            game_index: 153,
-            version: {
-              name: "red",
-              url: "https://pokeapi.co/api/v2/version-group/red/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "blue",
-              url: "https://pokeapi.co/api/v2/version-group/blue/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "yellow",
-              url: "https://pokeapi.co/api/v2/version-group/yellow/"
-            }
-          },
-        ],
-        height: null,
-        held_items: [],
-        id: 1,
-        is_default: true,
-        location_area_encounters: [],
-        moves: [
-          {
-            move: {
-              name: "razor-wind",
-              url: "https://pokeapi.co/api/v2/move/13/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "swords-dance",
-              url: "https://pokeapi.co/api/v2/move/14/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "cut",
-              url: "https://pokeapi.co/api/v2/move/15/"
-            },
-            version_group_details: []
-          },
-        ],
-        name: "bulbasaur",
-        order: null,
-        species: {
-          name: "bulbasaur",
-          url: "https://pokeapi.co/api/v2/pokemon-species/1/"
-        },
-        sprites: {
-          back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-          back_female: null,
-          back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/back-shiny.svg",
-          back_shiny_female: null,
-          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-default.svg",
-          front_female: null,
-          front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-shiny.svg",
-          front_shiny_female: null,
-          other: {
-            dream_world: {
-              front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-              front_female: null,
-            }
-          },
-          home: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png",
-            front_shiny_female: null
-          },
-          official_artwork: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png"
-          },
-          shotdown: {
-            back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/1.gif",
-            back_female: null,
-            back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/shiny/1.gif",
-            back_shiny_female: null,
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1.gif",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/1.gif",
-            front_shiny_female: null
-          }
-        },
-        versions: {},
-        stats: [],
-        types: [
-          {
-            slot: 1,
-            type: {
-              name: "grass",
-              url: "https://pokeapi.co/api/v2/type/12/"
-            }
-          },
-          {
-            slot: 2,
-            type: {
-              name: "poison",
-              url: "https://pokeapi.co/api/v2/type/4/"
-            }
-          }
-        ],
-        weight: null,
-      },
-      {
-        abilities: [],
-        base_experience: null,
-        cries: {},
-        forms: [],
-        games_indices: [
-          {
-            game_index: 153,
-            version: {
-              name: "red",
-              url: "https://pokeapi.co/api/v2/version-group/red/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "blue",
-              url: "https://pokeapi.co/api/v2/version-group/blue/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "yellow",
-              url: "https://pokeapi.co/api/v2/version-group/yellow/"
-            }
-          },
-        ],
-        height: null,
-        held_items: [],
-        id: 1,
-        is_default: true,
-        location_area_encounters: [],
-        moves: [
-          {
-            move: {
-              name: "razor-wind",
-              url: "https://pokeapi.co/api/v2/move/13/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "swords-dance",
-              url: "https://pokeapi.co/api/v2/move/14/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "cut",
-              url: "https://pokeapi.co/api/v2/move/15/"
-            },
-            version_group_details: []
-          },
-        ],
-        name: "bulbasaur",
-        order: null,
-        species: {
-          name: "bulbasaur",
-          url: "https://pokeapi.co/api/v2/pokemon-species/1/"
-        },
-        sprites: {
-          back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-          back_female: null,
-          back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/back-shiny.svg",
-          back_shiny_female: null,
-          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-default.svg",
-          front_female: null,
-          front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-shiny.svg",
-          front_shiny_female: null,
-          other: {
-            dream_world: {
-              front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-              front_female: null,
-            }
-          },
-          home: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png",
-            front_shiny_female: null
-          },
-          official_artwork: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png"
-          },
-          shotdown: {
-            back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/1.gif",
-            back_female: null,
-            back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/shiny/1.gif",
-            back_shiny_female: null,
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1.gif",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/1.gif",
-            front_shiny_female: null
-          }
-        },
-        versions: {},
-        stats: [],
-        types: [
-          {
-            slot: 1,
-            type: {
-              name: "grass",
-              url: "https://pokeapi.co/api/v2/type/12/"
-            }
-          },
-          {
-            slot: 2,
-            type: {
-              name: "poison",
-              url: "https://pokeapi.co/api/v2/type/4/"
-            }
-          }
-        ],
-        weight: null,
-      },
-      {
-        abilities: [],
-        base_experience: null,
-        cries: {},
-        forms: [],
-        games_indices: [
-          {
-            game_index: 153,
-            version: {
-              name: "red",
-              url: "https://pokeapi.co/api/v2/version-group/red/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "blue",
-              url: "https://pokeapi.co/api/v2/version-group/blue/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "yellow",
-              url: "https://pokeapi.co/api/v2/version-group/yellow/"
-            }
-          },
-        ],
-        height: null,
-        held_items: [],
-        id: 1,
-        is_default: true,
-        location_area_encounters: [],
-        moves: [
-          {
-            move: {
-              name: "razor-wind",
-              url: "https://pokeapi.co/api/v2/move/13/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "swords-dance",
-              url: "https://pokeapi.co/api/v2/move/14/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "cut",
-              url: "https://pokeapi.co/api/v2/move/15/"
-            },
-            version_group_details: []
-          },
-        ],
-        name: "bulbasaur",
-        order: null,
-        species: {
-          name: "bulbasaur",
-          url: "https://pokeapi.co/api/v2/pokemon-species/1/"
-        },
-        sprites: {
-          back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-          back_female: null,
-          back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/back-shiny.svg",
-          back_shiny_female: null,
-          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-default.svg",
-          front_female: null,
-          front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-shiny.svg",
-          front_shiny_female: null,
-          other: {
-            dream_world: {
-              front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-              front_female: null,
-            }
-          },
-          home: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png",
-            front_shiny_female: null
-          },
-          official_artwork: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png"
-          },
-          shotdown: {
-            back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/1.gif",
-            back_female: null,
-            back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/shiny/1.gif",
-            back_shiny_female: null,
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1.gif",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/1.gif",
-            front_shiny_female: null
-          }
-        },
-        versions: {},
-        stats: [],
-        types: [
-          {
-            slot: 1,
-            type: {
-              name: "grass",
-              url: "https://pokeapi.co/api/v2/type/12/"
-            }
-          },
-          {
-            slot: 2,
-            type: {
-              name: "poison",
-              url: "https://pokeapi.co/api/v2/type/4/"
-            }
-          }
-        ],
-        weight: null,
-      },
-      {
-        abilities: [],
-        base_experience: null,
-        cries: {},
-        forms: [],
-        games_indices: [
-          {
-            game_index: 153,
-            version: {
-              name: "red",
-              url: "https://pokeapi.co/api/v2/version-group/red/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "blue",
-              url: "https://pokeapi.co/api/v2/version-group/blue/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "yellow",
-              url: "https://pokeapi.co/api/v2/version-group/yellow/"
-            }
-          },
-        ],
-        height: null,
-        held_items: [],
-        id: 1,
-        is_default: true,
-        location_area_encounters: [],
-        moves: [
-          {
-            move: {
-              name: "razor-wind",
-              url: "https://pokeapi.co/api/v2/move/13/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "swords-dance",
-              url: "https://pokeapi.co/api/v2/move/14/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "cut",
-              url: "https://pokeapi.co/api/v2/move/15/"
-            },
-            version_group_details: []
-          },
-        ],
-        name: "bulbasaur",
-        order: null,
-        species: {
-          name: "bulbasaur",
-          url: "https://pokeapi.co/api/v2/pokemon-species/1/"
-        },
-        sprites: {
-          back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-          back_female: null,
-          back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/back-shiny.svg",
-          back_shiny_female: null,
-          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-default.svg",
-          front_female: null,
-          front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-shiny.svg",
-          front_shiny_female: null,
-          other: {
-            dream_world: {
-              front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-              front_female: null,
-            }
-          },
-          home: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png",
-            front_shiny_female: null
-          },
-          official_artwork: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png"
-          },
-          shotdown: {
-            back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/1.gif",
-            back_female: null,
-            back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/shiny/1.gif",
-            back_shiny_female: null,
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1.gif",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/1.gif",
-            front_shiny_female: null
-          }
-        },
-        versions: {},
-        stats: [],
-        types: [
-          {
-            slot: 1,
-            type: {
-              name: "grass",
-              url: "https://pokeapi.co/api/v2/type/12/"
-            }
-          },
-          {
-            slot: 2,
-            type: {
-              name: "poison",
-              url: "https://pokeapi.co/api/v2/type/4/"
-            }
-          }
-        ],
-        weight: null,
-      },
-      {
-        abilities: [],
-        base_experience: null,
-        cries: {},
-        forms: [],
-        games_indices: [
-          {
-            game_index: 153,
-            version: {
-              name: "red",
-              url: "https://pokeapi.co/api/v2/version-group/red/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "blue",
-              url: "https://pokeapi.co/api/v2/version-group/blue/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "yellow",
-              url: "https://pokeapi.co/api/v2/version-group/yellow/"
-            }
-          },
-        ],
-        height: null,
-        held_items: [],
-        id: 1,
-        is_default: true,
-        location_area_encounters: [],
-        moves: [
-          {
-            move: {
-              name: "razor-wind",
-              url: "https://pokeapi.co/api/v2/move/13/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "swords-dance",
-              url: "https://pokeapi.co/api/v2/move/14/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "cut",
-              url: "https://pokeapi.co/api/v2/move/15/"
-            },
-            version_group_details: []
-          },
-        ],
-        name: "bulbasaur",
-        order: null,
-        species: {
-          name: "bulbasaur",
-          url: "https://pokeapi.co/api/v2/pokemon-species/1/"
-        },
-        sprites: {
-          back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-          back_female: null,
-          back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/back-shiny.svg",
-          back_shiny_female: null,
-          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-default.svg",
-          front_female: null,
-          front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-shiny.svg",
-          front_shiny_female: null,
-          other: {
-            dream_world: {
-              front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-              front_female: null,
-            }
-          },
-          home: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png",
-            front_shiny_female: null
-          },
-          official_artwork: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png"
-          },
-          shotdown: {
-            back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/1.gif",
-            back_female: null,
-            back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/shiny/1.gif",
-            back_shiny_female: null,
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1.gif",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/1.gif",
-            front_shiny_female: null
-          }
-        },
-        versions: {},
-        stats: [],
-        types: [
-          {
-            slot: 1,
-            type: {
-              name: "grass",
-              url: "https://pokeapi.co/api/v2/type/12/"
-            }
-          },
-          {
-            slot: 2,
-            type: {
-              name: "poison",
-              url: "https://pokeapi.co/api/v2/type/4/"
-            }
-          }
-        ],
-        weight: null,
-      },
-      {
-        abilities: [],
-        base_experience: null,
-        cries: {},
-        forms: [],
-        games_indices: [
-          {
-            game_index: 153,
-            version: {
-              name: "red",
-              url: "https://pokeapi.co/api/v2/version-group/red/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "blue",
-              url: "https://pokeapi.co/api/v2/version-group/blue/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "yellow",
-              url: "https://pokeapi.co/api/v2/version-group/yellow/"
-            }
-          },
-        ],
-        height: null,
-        held_items: [],
-        id: 1,
-        is_default: true,
-        location_area_encounters: [],
-        moves: [
-          {
-            move: {
-              name: "razor-wind",
-              url: "https://pokeapi.co/api/v2/move/13/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "swords-dance",
-              url: "https://pokeapi.co/api/v2/move/14/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "cut",
-              url: "https://pokeapi.co/api/v2/move/15/"
-            },
-            version_group_details: []
-          },
-        ],
-        name: "bulbasaur",
-        order: null,
-        species: {
-          name: "bulbasaur",
-          url: "https://pokeapi.co/api/v2/pokemon-species/1/"
-        },
-        sprites: {
-          back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-          back_female: null,
-          back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/back-shiny.svg",
-          back_shiny_female: null,
-          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-default.svg",
-          front_female: null,
-          front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-shiny.svg",
-          front_shiny_female: null,
-          other: {
-            dream_world: {
-              front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-              front_female: null,
-            }
-          },
-          home: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png",
-            front_shiny_female: null
-          },
-          official_artwork: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png"
-          },
-          shotdown: {
-            back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/1.gif",
-            back_female: null,
-            back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/shiny/1.gif",
-            back_shiny_female: null,
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1.gif",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/1.gif",
-            front_shiny_female: null
-          }
-        },
-        versions: {},
-        stats: [],
-        types: [
-          {
-            slot: 1,
-            type: {
-              name: "grass",
-              url: "https://pokeapi.co/api/v2/type/12/"
-            }
-          },
-          {
-            slot: 2,
-            type: {
-              name: "poison",
-              url: "https://pokeapi.co/api/v2/type/4/"
-            }
-          }
-        ],
-        weight: null,
-      },
-      {
-        abilities: [],
-        base_experience: null,
-        cries: {},
-        forms: [],
-        games_indices: [
-          {
-            game_index: 153,
-            version: {
-              name: "red",
-              url: "https://pokeapi.co/api/v2/version-group/red/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "blue",
-              url: "https://pokeapi.co/api/v2/version-group/blue/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "yellow",
-              url: "https://pokeapi.co/api/v2/version-group/yellow/"
-            }
-          },
-        ],
-        height: null,
-        held_items: [],
-        id: 1,
-        is_default: true,
-        location_area_encounters: [],
-        moves: [
-          {
-            move: {
-              name: "razor-wind",
-              url: "https://pokeapi.co/api/v2/move/13/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "swords-dance",
-              url: "https://pokeapi.co/api/v2/move/14/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "cut",
-              url: "https://pokeapi.co/api/v2/move/15/"
-            },
-            version_group_details: []
-          },
-        ],
-        name: "bulbasaur",
-        order: null,
-        species: {
-          name: "bulbasaur",
-          url: "https://pokeapi.co/api/v2/pokemon-species/1/"
-        },
-        sprites: {
-          back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-          back_female: null,
-          back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/back-shiny.svg",
-          back_shiny_female: null,
-          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-default.svg",
-          front_female: null,
-          front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-shiny.svg",
-          front_shiny_female: null,
-          other: {
-            dream_world: {
-              front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-              front_female: null,
-            }
-          },
-          home: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png",
-            front_shiny_female: null
-          },
-          official_artwork: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png"
-          },
-          shotdown: {
-            back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/1.gif",
-            back_female: null,
-            back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/shiny/1.gif",
-            back_shiny_female: null,
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1.gif",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/1.gif",
-            front_shiny_female: null
-          }
-        },
-        versions: {},
-        stats: [],
-        types: [
-          {
-            slot: 1,
-            type: {
-              name: "grass",
-              url: "https://pokeapi.co/api/v2/type/12/"
-            }
-          },
-          {
-            slot: 2,
-            type: {
-              name: "poison",
-              url: "https://pokeapi.co/api/v2/type/4/"
-            }
-          }
-        ],
-        weight: null,
-      },
-      {
-        abilities: [],
-        base_experience: null,
-        cries: {},
-        forms: [],
-        games_indices: [
-          {
-            game_index: 153,
-            version: {
-              name: "red",
-              url: "https://pokeapi.co/api/v2/version-group/red/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "blue",
-              url: "https://pokeapi.co/api/v2/version-group/blue/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "yellow",
-              url: "https://pokeapi.co/api/v2/version-group/yellow/"
-            }
-          },
-        ],
-        height: null,
-        held_items: [],
-        id: 1,
-        is_default: true,
-        location_area_encounters: [],
-        moves: [
-          {
-            move: {
-              name: "razor-wind",
-              url: "https://pokeapi.co/api/v2/move/13/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "swords-dance",
-              url: "https://pokeapi.co/api/v2/move/14/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "cut",
-              url: "https://pokeapi.co/api/v2/move/15/"
-            },
-            version_group_details: []
-          },
-        ],
-        name: "bulbasaur",
-        order: null,
-        species: {
-          name: "bulbasaur",
-          url: "https://pokeapi.co/api/v2/pokemon-species/1/"
-        },
-        sprites: {
-          back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-          back_female: null,
-          back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/back-shiny.svg",
-          back_shiny_female: null,
-          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-default.svg",
-          front_female: null,
-          front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-shiny.svg",
-          front_shiny_female: null,
-          other: {
-            dream_world: {
-              front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-              front_female: null,
-            }
-          },
-          home: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png",
-            front_shiny_female: null
-          },
-          official_artwork: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png"
-          },
-          shotdown: {
-            back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/1.gif",
-            back_female: null,
-            back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/shiny/1.gif",
-            back_shiny_female: null,
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1.gif",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/1.gif",
-            front_shiny_female: null
-          }
-        },
-        versions: {},
-        stats: [],
-        types: [
-          {
-            slot: 1,
-            type: {
-              name: "grass",
-              url: "https://pokeapi.co/api/v2/type/12/"
-            }
-          },
-          {
-            slot: 2,
-            type: {
-              name: "poison",
-              url: "https://pokeapi.co/api/v2/type/4/"
-            }
-          }
-        ],
-        weight: null,
-      },
-      {
-        abilities: [],
-        base_experience: null,
-        cries: {},
-        forms: [],
-        games_indices: [
-          {
-            game_index: 153,
-            version: {
-              name: "red",
-              url: "https://pokeapi.co/api/v2/version-group/red/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "blue",
-              url: "https://pokeapi.co/api/v2/version-group/blue/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "yellow",
-              url: "https://pokeapi.co/api/v2/version-group/yellow/"
-            }
-          },
-        ],
-        height: null,
-        held_items: [],
-        id: 1,
-        is_default: true,
-        location_area_encounters: [],
-        moves: [
-          {
-            move: {
-              name: "razor-wind",
-              url: "https://pokeapi.co/api/v2/move/13/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "swords-dance",
-              url: "https://pokeapi.co/api/v2/move/14/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "cut",
-              url: "https://pokeapi.co/api/v2/move/15/"
-            },
-            version_group_details: []
-          },
-        ],
-        name: "bulbasaur",
-        order: null,
-        species: {
-          name: "bulbasaur",
-          url: "https://pokeapi.co/api/v2/pokemon-species/1/"
-        },
-        sprites: {
-          back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-          back_female: null,
-          back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/back-shiny.svg",
-          back_shiny_female: null,
-          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-default.svg",
-          front_female: null,
-          front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-shiny.svg",
-          front_shiny_female: null,
-          other: {
-            dream_world: {
-              front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-              front_female: null,
-            }
-          },
-          home: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png",
-            front_shiny_female: null
-          },
-          official_artwork: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png"
-          },
-          shotdown: {
-            back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/1.gif",
-            back_female: null,
-            back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/shiny/1.gif",
-            back_shiny_female: null,
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1.gif",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/1.gif",
-            front_shiny_female: null
-          }
-        },
-        versions: {},
-        stats: [],
-        types: [
-          {
-            slot: 1,
-            type: {
-              name: "grass",
-              url: "https://pokeapi.co/api/v2/type/12/"
-            }
-          },
-          {
-            slot: 2,
-            type: {
-              name: "poison",
-              url: "https://pokeapi.co/api/v2/type/4/"
-            }
-          }
-        ],
-        weight: null,
-      },
-      {
-        abilities: [],
-        base_experience: null,
-        cries: {},
-        forms: [],
-        games_indices: [
-          {
-            game_index: 153,
-            version: {
-              name: "red",
-              url: "https://pokeapi.co/api/v2/version-group/red/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "blue",
-              url: "https://pokeapi.co/api/v2/version-group/blue/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "yellow",
-              url: "https://pokeapi.co/api/v2/version-group/yellow/"
-            }
-          },
-        ],
-        height: null,
-        held_items: [],
-        id: 1,
-        is_default: true,
-        location_area_encounters: [],
-        moves: [
-          {
-            move: {
-              name: "razor-wind",
-              url: "https://pokeapi.co/api/v2/move/13/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "swords-dance",
-              url: "https://pokeapi.co/api/v2/move/14/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "cut",
-              url: "https://pokeapi.co/api/v2/move/15/"
-            },
-            version_group_details: []
-          },
-        ],
-        name: "bulbasaur",
-        order: null,
-        species: {
-          name: "bulbasaur",
-          url: "https://pokeapi.co/api/v2/pokemon-species/1/"
-        },
-        sprites: {
-          back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-          back_female: null,
-          back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/back-shiny.svg",
-          back_shiny_female: null,
-          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-default.svg",
-          front_female: null,
-          front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-shiny.svg",
-          front_shiny_female: null,
-          other: {
-            dream_world: {
-              front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-              front_female: null,
-            }
-          },
-          home: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png",
-            front_shiny_female: null
-          },
-          official_artwork: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png"
-          },
-          shotdown: {
-            back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/1.gif",
-            back_female: null,
-            back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/shiny/1.gif",
-            back_shiny_female: null,
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1.gif",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/1.gif",
-            front_shiny_female: null
-          }
-        },
-        versions: {},
-        stats: [],
-        types: [
-          {
-            slot: 1,
-            type: {
-              name: "grass",
-              url: "https://pokeapi.co/api/v2/type/12/"
-            }
-          },
-          {
-            slot: 2,
-            type: {
-              name: "poison",
-              url: "https://pokeapi.co/api/v2/type/4/"
-            }
-          }
-        ],
-        weight: null,
-      },
-      {
-        abilities: [],
-        base_experience: null,
-        cries: {},
-        forms: [],
-        games_indices: [
-          {
-            game_index: 153,
-            version: {
-              name: "red",
-              url: "https://pokeapi.co/api/v2/version-group/red/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "blue",
-              url: "https://pokeapi.co/api/v2/version-group/blue/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "yellow",
-              url: "https://pokeapi.co/api/v2/version-group/yellow/"
-            }
-          },
-        ],
-        height: null,
-        held_items: [],
-        id: 1,
-        is_default: true,
-        location_area_encounters: [],
-        moves: [
-          {
-            move: {
-              name: "razor-wind",
-              url: "https://pokeapi.co/api/v2/move/13/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "swords-dance",
-              url: "https://pokeapi.co/api/v2/move/14/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "cut",
-              url: "https://pokeapi.co/api/v2/move/15/"
-            },
-            version_group_details: []
-          },
-        ],
-        name: "bulbasaur",
-        order: null,
-        species: {
-          name: "bulbasaur",
-          url: "https://pokeapi.co/api/v2/pokemon-species/1/"
-        },
-        sprites: {
-          back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-          back_female: null,
-          back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/back-shiny.svg",
-          back_shiny_female: null,
-          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-default.svg",
-          front_female: null,
-          front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-shiny.svg",
-          front_shiny_female: null,
-          other: {
-            dream_world: {
-              front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-              front_female: null,
-            }
-          },
-          home: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png",
-            front_shiny_female: null
-          },
-          official_artwork: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png"
-          },
-          shotdown: {
-            back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/1.gif",
-            back_female: null,
-            back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/shiny/1.gif",
-            back_shiny_female: null,
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1.gif",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/1.gif",
-            front_shiny_female: null
-          }
-        },
-        versions: {},
-        stats: [],
-        types: [
-          {
-            slot: 1,
-            type: {
-              name: "grass",
-              url: "https://pokeapi.co/api/v2/type/12/"
-            }
-          },
-          {
-            slot: 2,
-            type: {
-              name: "poison",
-              url: "https://pokeapi.co/api/v2/type/4/"
-            }
-          }
-        ],
-        weight: null,
-      },
-      {
-        abilities: [],
-        base_experience: null,
-        cries: {},
-        forms: [],
-        games_indices: [
-          {
-            game_index: 153,
-            version: {
-              name: "red",
-              url: "https://pokeapi.co/api/v2/version-group/red/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "blue",
-              url: "https://pokeapi.co/api/v2/version-group/blue/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "yellow",
-              url: "https://pokeapi.co/api/v2/version-group/yellow/"
-            }
-          },
-        ],
-        height: null,
-        held_items: [],
-        id: 1,
-        is_default: true,
-        location_area_encounters: [],
-        moves: [
-          {
-            move: {
-              name: "razor-wind",
-              url: "https://pokeapi.co/api/v2/move/13/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "swords-dance",
-              url: "https://pokeapi.co/api/v2/move/14/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "cut",
-              url: "https://pokeapi.co/api/v2/move/15/"
-            },
-            version_group_details: []
-          },
-        ],
-        name: "bulbasaur",
-        order: null,
-        species: {
-          name: "bulbasaur",
-          url: "https://pokeapi.co/api/v2/pokemon-species/1/"
-        },
-        sprites: {
-          back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-          back_female: null,
-          back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/back-shiny.svg",
-          back_shiny_female: null,
-          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-default.svg",
-          front_female: null,
-          front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-shiny.svg",
-          front_shiny_female: null,
-          other: {
-            dream_world: {
-              front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-              front_female: null,
-            }
-          },
-          home: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png",
-            front_shiny_female: null
-          },
-          official_artwork: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png"
-          },
-          shotdown: {
-            back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/1.gif",
-            back_female: null,
-            back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/shiny/1.gif",
-            back_shiny_female: null,
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1.gif",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/1.gif",
-            front_shiny_female: null
-          }
-        },
-        versions: {},
-        stats: [],
-        types: [
-          {
-            slot: 1,
-            type: {
-              name: "grass",
-              url: "https://pokeapi.co/api/v2/type/12/"
-            }
-          },
-          {
-            slot: 2,
-            type: {
-              name: "poison",
-              url: "https://pokeapi.co/api/v2/type/4/"
-            }
-          }
-        ],
-        weight: null,
-      },
-      {
-        abilities: [],
-        base_experience: null,
-        cries: {},
-        forms: [],
-        games_indices: [
-          {
-            game_index: 153,
-            version: {
-              name: "red",
-              url: "https://pokeapi.co/api/v2/version-group/red/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "blue",
-              url: "https://pokeapi.co/api/v2/version-group/blue/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "yellow",
-              url: "https://pokeapi.co/api/v2/version-group/yellow/"
-            }
-          },
-        ],
-        height: null,
-        held_items: [],
-        id: 1,
-        is_default: true,
-        location_area_encounters: [],
-        moves: [
-          {
-            move: {
-              name: "razor-wind",
-              url: "https://pokeapi.co/api/v2/move/13/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "swords-dance",
-              url: "https://pokeapi.co/api/v2/move/14/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "cut",
-              url: "https://pokeapi.co/api/v2/move/15/"
-            },
-            version_group_details: []
-          },
-        ],
-        name: "bulbasaur",
-        order: null,
-        species: {
-          name: "bulbasaur",
-          url: "https://pokeapi.co/api/v2/pokemon-species/1/"
-        },
-        sprites: {
-          back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-          back_female: null,
-          back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/back-shiny.svg",
-          back_shiny_female: null,
-          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-default.svg",
-          front_female: null,
-          front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-shiny.svg",
-          front_shiny_female: null,
-          other: {
-            dream_world: {
-              front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-              front_female: null,
-            }
-          },
-          home: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png",
-            front_shiny_female: null
-          },
-          official_artwork: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png"
-          },
-          shotdown: {
-            back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/1.gif",
-            back_female: null,
-            back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/shiny/1.gif",
-            back_shiny_female: null,
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1.gif",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/1.gif",
-            front_shiny_female: null
-          }
-        },
-        versions: {},
-        stats: [],
-        types: [
-          {
-            slot: 1,
-            type: {
-              name: "grass",
-              url: "https://pokeapi.co/api/v2/type/12/"
-            }
-          },
-          {
-            slot: 2,
-            type: {
-              name: "poison",
-              url: "https://pokeapi.co/api/v2/type/4/"
-            }
-          }
-        ],
-        weight: null,
-      },
-      {
-        abilities: [],
-        base_experience: null,
-        cries: {},
-        forms: [],
-        games_indices: [
-          {
-            game_index: 153,
-            version: {
-              name: "red",
-              url: "https://pokeapi.co/api/v2/version-group/red/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "blue",
-              url: "https://pokeapi.co/api/v2/version-group/blue/"
-            }
-          },
-          {
-            game_index: 153,
-            version: {
-              name: "yellow",
-              url: "https://pokeapi.co/api/v2/version-group/yellow/"
-            }
-          },
-        ],
-        height: null,
-        held_items: [],
-        id: 1,
-        is_default: true,
-        location_area_encounters: [],
-        moves: [
-          {
-            move: {
-              name: "razor-wind",
-              url: "https://pokeapi.co/api/v2/move/13/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "swords-dance",
-              url: "https://pokeapi.co/api/v2/move/14/"
-            },
-            version_group_details: []
-          },
-          {
-            move: {
-              name: "cut",
-              url: "https://pokeapi.co/api/v2/move/15/"
-            },
-            version_group_details: []
-          },
-        ],
-        name: "bulbasaur",
-        order: null,
-        species: {
-          name: "bulbasaur",
-          url: "https://pokeapi.co/api/v2/pokemon-species/1/"
-        },
-        sprites: {
-          back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-          back_female: null,
-          back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/back-shiny.svg",
-          back_shiny_female: null,
-          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-default.svg",
-          front_female: null,
-          front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/front-shiny.svg",
-          front_shiny_female: null,
-          other: {
-            dream_world: {
-              front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-              front_female: null,
-            }
-          },
-          home: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png",
-            front_shiny_female: null
-          },
-          official_artwork: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png"
-          },
-          shotdown: {
-            back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/1.gif",
-            back_female: null,
-            back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/shiny/1.gif",
-            back_shiny_female: null,
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1.gif",
-            front_female: null,
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/1.gif",
-            front_shiny_female: null
-          }
-        },
-        versions: {},
-        stats: [],
-        types: [
-          {
-            slot: 1,
-            type: {
-              name: "grass",
-              url: "https://pokeapi.co/api/v2/type/12/"
-            }
-          },
-          {
-            slot: 2,
-            type: {
-              name: "poison",
-              url: "https://pokeapi.co/api/v2/type/4/"
-            }
-          }
         ],
         weight: null,
       },
@@ -2504,9 +394,13 @@ export default createStore({
     idFilter: '',
     typeFilter: '',
     speciesFilter: '',
+    evolutions: [],
   },
   getters: {},
   mutations: {
+    setPokemons(state, pokemons) {
+      state.pokemons = pokemons;
+    },
     setCurrentId(state, id) {
       state.CurrentId = id;
     },
@@ -2524,6 +418,9 @@ export default createStore({
     },
     setSpeciesFilter(state, value) {
       state.speciesFilter = value;
+    },
+    setEvolutions(state, value) {
+      state.evolutions = value;
     },
   },
   actions: {},

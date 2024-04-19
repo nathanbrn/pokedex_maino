@@ -58,13 +58,14 @@ const updateSpeciesFilter = (event) => {
             </div>
             <div class="input-group me-2 nav-item">
               <label class="input-group-text">Tipo</label>
-              <select class="form-select" @change="updateTypeFilter">
-                <option value="" selected>Selecione...</option>
+              <select class="form-select text-capitalize" @change="updateTypeFilter">
+                <option value="" selected>Todos</option>
                 <template v-for="pokemon in pokemons">
                   <option
                     v-for="typeP in pokemon.types"
                     :key="pokemon.id"
                     :value="typeP.type.name"
+                    class="text-capitalize"
                   >
                     {{ typeP.type.name }}
                   </option>
@@ -73,12 +74,13 @@ const updateSpeciesFilter = (event) => {
             </div>
             <div class="input-group nav-item">
               <label class="input-group-text">Espécie</label>
-              <select class="form-select" @change="updateSpeciesFilter">
-                <option value="" selected>Selecione...</option>
+              <select class="form-select text-capitalize" @change="updateSpeciesFilter">
+                <option value="" selected>Todos</option>
                 <option
                   v-for="pokemon in pokemons"
                   :key="pokemon.id"
                   :value="pokemon.species.name"
+                  class="text-capitalize"
                 >
                   {{ pokemon.species.name }}
                 </option>

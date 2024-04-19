@@ -3,6 +3,7 @@ import { computed } from "vue";
 import { useStore } from "vuex";
 
 const store = useStore();
+
 const pokemons = computed(() => {
   const allPokemons = store.state.pokemons;
 

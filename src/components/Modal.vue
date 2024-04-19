@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import { useStore } from "vuex";
 import axios from "axios";
 
@@ -7,25 +7,47 @@ const store = useStore();
 const pokemons = computed(() => store.state.pokemons);
 const currentId = computed(() => store.state.CurrentId);
 
-const currentPokemon = computed(() =>
-  pokemons.value.find((pokemon) => pokemon.id === currentId.value)
-);
+let urlEvolution = null;
+let evolutionsPokemon = [];
 
-const evolucoes = ref(null);
+const currentPokemon = computed(() => {
+  const pokemon = pokemons.value.find(
+    (pokemon) => pokemon.id === currentId.value
+  );
 
-if (currentId.value) {
-  axios
-  .get(`https://pokeapi.co/api/v2/pokemon-species/${currentId.value}`)
-  .then(({ data }) => {
-    const { results } = data;
-    evolucoes.value = results.evolution_chain;
-  })
-  .catch((error) => {
-    console.error(error);
-  });
-}
+  if (currentId.value) {
+    axios
+      .get(`https://pokeapi.co/api/v2/pokemon-species/${currentId.value}/`)
+      .then((response) => {
+        urlEvolution = response.data.evolution_chain.url;
+        console.log(urlEvolution);
+      });
 
-console.log(evolucoes.value);
+    if (urlEvolution) {
+      evolutionsPokemon.value = axios
+        .get(urlEvolution)
+        .then((response) => {
+          evolutionsPokemon.push(
+            response.data.chain.evolves_to[0].species.name
+          );
+          evolutionsPokemon.push(
+            response.data.chain.evolves_to[0].evolves_to[0].species.name
+          );
+
+          store.commit("setEvolutions", evolutionsPokemon);
+
+          return response.data.chain.evolves_to[0].species.name;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }
+
+  return pokemon;
+});
+
+const evolutions = computed(() => store.state.evolutions);
 </script>
 
 <template>
@@ -65,20 +87,30 @@ console.log(evolucoes.value);
           <div class="card mb-3">
             <div id="carouselExample" class="carousel slide">
               <div class="carousel-inner">
-                <div
-                  class="carousel-item active"
-                >
-                  <img :src="currentPokemon?.sprites.other.dream_world.front_default" class="card-img-top" :alt="currentPokemon?.name" />
+                <div class="carousel-item active">
+                  <img
+                    :src="
+                      currentPokemon?.sprites.other.dream_world.front_default
+                    "
+                    class="card-img-top"
+                    :alt="currentPokemon?.name"
+                  />
                 </div>
-                <div
-                  class="carousel-item"
-                >
-                  <img :src="currentPokemon?.sprites.home.front_default" class="card-img-top" :alt="currentPokemon?.name" />
+                <div class="carousel-item">
+                  <img
+                    :src="currentPokemon?.sprites.home.front_default"
+                    class="card-img-top"
+                    :alt="currentPokemon?.name"
+                  />
                 </div>
-                <div
-                  class="carousel-item"
-                >
-                  <img :src="currentPokemon?.sprites.official_artwork.front_default" class="card-img-top" :alt="currentPokemon?.name" />
+                <div class="carousel-item">
+                  <img
+                    :src="
+                      currentPokemon?.sprites.official_artwork.front_default
+                    "
+                    class="card-img-top"
+                    :alt="currentPokemon?.name"
+                  />
                 </div>
               </div>
               <button
@@ -108,23 +140,56 @@ console.log(evolucoes.value);
             </div>
 
             <div class="card-body">
+              <div>
+                <img
+                  class="my-3 me-1"
+                  width="70rem"
+                  :src="currentPokemon?.sprites.back_default"
+                />
+                <img
+                  class="my-3 me-1"
+                  width="70rem"
+                  :src="currentPokemon?.sprites.back_shiny"
+                />
+                <img
+                  class="my-3 me-1"
+                  width="70rem"
+                  :src="currentPokemon?.sprites.front_default"
+                />
+                <img
+                  class="my-3 me-1"
+                  width="70rem"
+                  :src="currentPokemon?.sprites.front_shiny"
+                />
+              </div>
               <h5 class="card-title">Movimentos de ataque</h5>
               <ul>
-                <li v-for="move in currentPokemon?.moves" class="card-text text-capitalize">
+                <li
+                  v-for="move in currentPokemon?.moves"
+                  class="card-text text-capitalize"
+                >
                   {{ move.move.name }}
                 </li>
               </ul>
-              <br>
-              <h5 class="card-title">Evoluções</h5>
-              <ul>
-                <li v-for="evolucao in evolucoes" :key="evolucao.id" class="card-text text-capitalize">
-                  {{ evolucao }}
+              <br />
+              <h5 v-if="evolutions" class="card-title">Evoluções</h5>
+              <ul v-if="evolutions">
+                <li
+                  class="text-capitalize"
+                  v-for="(evolution, index) in evolutions"
+                  :key="index"
+                >
+                  {{ evolution }}
                 </li>
               </ul>
-              <br>
+              <br v-if="evolutions" />
               <h5 class="card-title">Games</h5>
               <ul>
-                <li v-for="(game, index) in currentPokemon?.game_indices" :key="index" class="card-text text-capitalize">
+                <li
+                  v-for="(game, index) in currentPokemon?.game_indices"
+                  :key="index"
+                  class="card-text text-capitalize"
+                >
                   {{ game.version.name }}
                 </li>
               </ul>
