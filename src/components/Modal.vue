@@ -42,12 +42,14 @@ watch(currentId, (newId) => {
             .then((response) => {
               refNameEvolution.value = response.data.chain.species.name;
               const evolutionsPokemon = [];
-              evolutionsPokemon.push(
-                response.data.chain.evolves_to[0].species.name
-              );
-              evolutionsPokemon.push(
-                response.data.chain.evolves_to[0].evolves_to[0].species.name
-              );
+              if (response.data.chain?.evolves_to[0]?.species?.name !== undefined)
+                evolutionsPokemon.push(
+                  response.data.chain?.evolves_to[0]?.species?.name
+                );
+              if (response.data.chain?.evolves_to[0]?.evolves_to[0]?.species?.name !== undefined)
+                evolutionsPokemon.push(
+                  response.data.chain?.evolves_to[0]?.evolves_to[0]?.species?.name
+                );
 
               store.commit("setEvolutions", evolutionsPokemon);
             })
@@ -168,30 +170,6 @@ watch(currentId, (newId) => {
                   </div>
                 </div>
               </div>
-              <!-- <h5 class="card-title">Movimentos de ataque</h5>
-              <ul>
-                <li v-for="move in currentPokemon?.moves" class="card-text text-capitalize">
-                  {{ move.move.name }}
-                </li>
-              </ul>
-              <br /> -->
-              <!-- <h5 class="card-title">Evoluções</h5>
-              <ul>
-                <li class="text-capitalize">
-                  1 - {{ refNameEvolution }}
-                </li>
-                <li class="text-capitalize" v-for="(evolution, index) in evolutions" :key="index">
-                  {{ `${index + 2} - ${evolution}` }}
-                </li>
-              </ul>
-              <br /> -->
-              <!-- <h5 class="card-title">Games</h5>
-              <ul>
-                <li v-for="(game, index) in currentPokemon?.game_indices" :key="index"
-                  class="card-text text-capitalize">
-                  {{ game.version.name }}
-                </li>
-              </ul> -->
             </div>
           </div>
         </div>
