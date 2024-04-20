@@ -3,7 +3,8 @@ import { computed } from 'vue';
 import { useStore } from 'vuex';
 
 const store = useStore();
-const pokemons = computed(() => store.state.pokemons);
+
+const pokemons = computed(() => store.state.pokemonsApi);
 
 const updateNameFilter = (event) => {
   store.commit('setNameFilter', event.target.value);
@@ -20,7 +21,6 @@ const updateTypeFilter = (event) => {
 const updateSpeciesFilter = (event) => {
   store.commit('setSpeciesFilter', event.target.value);
 };
-
 </script>
 
 <template>

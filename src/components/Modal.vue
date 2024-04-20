@@ -1,10 +1,10 @@
 <script setup>
-import { computed, onMounted, watch } from "vue";
+import { computed, watch } from "vue";
 import { useStore } from "vuex";
 import axios from "axios";
 
 const store = useStore();
-const pokemons = computed(() => store.state.pokemons);
+const pokemons = computed(() => store.state.pokemonsApi);
 const currentId = computed(() => store.state.CurrentId);
 
 let urlEvolution = null;
@@ -74,7 +74,7 @@ watch(currentId, (newId) => {
           <img
             width="30rem"
             class="me-2"
-            :src="currentPokemon?.sprites.shotdown.front_default"
+            :src="currentPokemon?.sprites.other.showdown.front_default"
             alt=""
           />
           <h1 class="modal-title fs-5 text-capitalize" id="exampleModalLabel">
@@ -83,7 +83,7 @@ watch(currentId, (newId) => {
           <img
             width="30rem"
             class="ms-2"
-            :src="currentPokemon?.sprites.shotdown.back_default"
+            :src="currentPokemon?.sprites.other.showdown.back_default"
             alt=""
           />
           <button
@@ -108,16 +108,14 @@ watch(currentId, (newId) => {
                 </div>
                 <div class="carousel-item">
                   <img
-                    :src="currentPokemon?.sprites.home.front_default"
+                    :src="currentPokemon?.sprites.other.home.front_default"
                     class="card-img-top"
                     :alt="currentPokemon?.name"
                   />
                 </div>
                 <div class="carousel-item">
                   <img
-                    :src="
-                      currentPokemon?.sprites.official_artwork.front_default
-                    "
+                    :src="currentPokemon?.sprites.other['official-artwork'].front_default"
                     class="card-img-top"
                     :alt="currentPokemon?.name"
                   />

@@ -1,11 +1,28 @@
 <script setup>
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import { useStore } from "vuex";
+import axios from "axios";
 
 const store = useStore();
 
+onMounted(() => {
+  axios.get("https://pokeapi.co/api/v2/pokemon?limit=10").then((response) => {
+    const generics = response.data.results;
+    generics.map((pokemon) => {
+      axios.get(pokemon.url).then((response) => {
+        const pokemon = response.data;
+
+        const storePokemons = store.state.pokemonsApi;
+        store.state.pokemonsApi = [...storePokemons, pokemon];
+      })
+    });
+  }).catch((error) => {
+    console.log(error);
+  })
+});
+
 const pokemons = computed(() => {
-  const allPokemons = store.state.pokemons;
+  const allPokemons = store?.state?.pokemonsApi ?? [];
 
   const filteredPokemons = allPokemons.filter((pokemon) => {
     if (
@@ -38,6 +55,8 @@ const pokemons = computed(() => {
 
     return true;
   });
+
+  console.log(filteredPokemons);
 
   return filteredPokemons;
 });
@@ -72,23 +91,13 @@ const openModal = (pokemonId) => {
 </script>
 
 <template>
-  <div
-    v-for="pokemon in filteredPokemons"
-    :key="pokemon.id"
-    class="card mt-4 mx-2 selected col"
-    style="width: 12rem; cursor: pointer"
-    @click="openModal(pokemon.id)"
-    ref="listEl"
-  >
+  <div v-for="pokemon in filteredPokemons" :key="pokemon.id" class="card mt-4 mx-2 selected col"
+    style="width: 12rem; cursor: pointer" @click="openModal(pokemon.id)" ref="listEl">
     <div>
       <div></div>
       <div class="p-3">
         <div>
-          <img
-            :src="pokemon.sprites.other.dream_world.front_default"
-            class="d-block w-100"
-            :alt="pokemon.name"
-          />
+          <img :src="pokemon.sprites.other.dream_world.front_default" class="d-block w-100" :alt="pokemon.name" />
         </div>
       </div>
     </div>
@@ -102,6 +111,7 @@ const openModal = (pokemonId) => {
 .selected {
   transition: all 0.2s ease-in-out;
 }
+
 .selected:hover {
   border: 3px solid rgb(108, 108, 197);
 }
