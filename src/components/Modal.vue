@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from "vue";
+import { computed, onMounted, watch } from "vue";
 import { useStore } from "vuex";
 import axios from "axios";
 
@@ -8,7 +8,6 @@ const pokemons = computed(() => store.state.pokemons);
 const currentId = computed(() => store.state.CurrentId);
 
 let urlEvolution = null;
-let evolutionsPokemon = [];
 
 const currentPokemon = computed(() => {
   const pokemon = pokemons.value.find(
@@ -20,34 +19,45 @@ const currentPokemon = computed(() => {
       .get(`https://pokeapi.co/api/v2/pokemon-species/${currentId.value}/`)
       .then((response) => {
         urlEvolution = response.data.evolution_chain.url;
-        console.log(urlEvolution);
       });
-
-    if (urlEvolution) {
-      evolutionsPokemon.value = axios
-        .get(urlEvolution)
-        .then((response) => {
-          evolutionsPokemon.push(
-            response.data.chain.evolves_to[0].species.name
-          );
-          evolutionsPokemon.push(
-            response.data.chain.evolves_to[0].evolves_to[0].species.name
-          );
-
-          store.commit("setEvolutions", evolutionsPokemon);
-
-          return response.data.chain.evolves_to[0].species.name;
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
   }
 
   return pokemon;
 });
 
 const evolutions = computed(() => store.state.evolutions);
+
+// Requisição para obter evoluções quando currentId mudar
+watch(currentId, (newId) => {
+  if (newId) {
+    axios
+      .get(`https://pokeapi.co/api/v2/pokemon-species/${newId}/`)
+      .then((response) => {
+        urlEvolution = response.data.evolution_chain.url;
+        if (urlEvolution) {
+          axios
+            .get(urlEvolution)
+            .then((response) => {
+              const evolutionsPokemon = [];
+              evolutionsPokemon.push(
+                response.data.chain.evolves_to[0].species.name
+              );
+              evolutionsPokemon.push(
+                response.data.chain.evolves_to[0].evolves_to[0].species.name
+              );
+
+              store.commit("setEvolutions", evolutionsPokemon);
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+});
 </script>
 
 <template>
