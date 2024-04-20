@@ -6,7 +6,7 @@ import axios from "axios";
 const store = useStore();
 
 onMounted(() => {
-  axios.get("https://pokeapi.co/api/v2/pokemon?limit=10").then((response) => {
+  axios.get("https://pokeapi.co/api/v2/pokemon?limit=100").then((response) => {
     const generics = response.data.results;
     generics.map((pokemon) => {
       axios.get(pokemon.url).then((response) => {
@@ -55,8 +55,6 @@ const pokemons = computed(() => {
 
     return true;
   });
-
-  console.log(filteredPokemons);
 
   return filteredPokemons;
 });
