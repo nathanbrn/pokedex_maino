@@ -11,24 +11,20 @@ import axios from "axios";
 const store = useStore();
 
 const el = ref(null);
-const maxPokemons = 1302;
 
 const loadMorePokemons = async (limit, offset) => {
-  if (!(offset >= maxPokemons)) {
-    console.log(offset);
-    try {
-      const response = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
-      );
-      const newPokemons = response.data.results.map(async (pokemon) => {
-        const pokemonData = await axios.get(pokemon.url);
-        return pokemonData.data;
-      });
-      const loadedPokemons = await Promise.all(newPokemons);
-      store.state.pokemonsApi = [...store.state.pokemonsApi, ...loadedPokemons];
-    } catch (error) {
-      console.error("Erro ao carregar mais pokemons:", error);
-    }
+  try {
+    const response = await axios.get(
+      `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
+    );
+    const newPokemons = response.data.results.map(async (pokemon) => {
+      const pokemonData = await axios.get(pokemon.url);
+      return pokemonData.data;
+    });
+    const loadedPokemons = await Promise.all(newPokemons);
+    store.state.pokemonsApi = [...store.state.pokemonsApi, ...loadedPokemons];
+  } catch (error) {
+    console.error("Erro ao carregar mais pokemons:", error);
   }
 };
 
