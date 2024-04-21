@@ -21,6 +21,7 @@ const onChangeLanguage = (event) => {
       <option value="pt-BR">Português-BR</option>
       <option value="ja">Japonês-JA</option>
     </select>
+    <span class="textMin">OBS: Apenas os nomes serão traduzidos</span>
   </div>
 </template>
 
@@ -36,5 +37,9 @@ const onChangeLanguage = (event) => {
 
   .tamanho {
     width: 200px;
+  }
+
+  .textMin {
+    font-size: 12px;
   }
 </style>
