@@ -29,7 +29,6 @@ const refNameEvolution = ref(null);
 
 const evolutions = computed(() => store.state.evolutions);
 
-// Requisição para obter evoluções quando currentId mudar
 watch(currentId, (newId) => {
   if (newId) {
     axios

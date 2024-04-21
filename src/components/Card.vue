@@ -2,30 +2,18 @@
 import { computed, onMounted, ref } from "vue";
 import { useStore } from "vuex";
 import axios from "axios";
-import { useInfiniteScroll } from "@vueuse/core";
 
 const store = useStore();
+let offset = 0;
 let limit = 20;
-const el = ref < HTMLElement | null > (null)
 
 onMounted(() => {
   loadPokemons();
-
-  //   document.getElementById("el").addEventListener("scroll", async (event) => {
-  //     let element = event.target;
-
-  //     const scrollPosition = element.scrollTop + element.clientHeight;
-  //     const scrollLimit = element.scrollHeight - 20;
-
-  //     if (scrollPosition >= scrollLimit) {
-  //       console.log("Chegou ao final");
-  //     }
-  //   });
 });
 
-const loadPokemons = async () => {
+const loadPokemons = async (limit, offset) => {
 
-  await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=${limit}`).then((response) => {
+  await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`).then((response) => {
     const generics = response.data.results;
     generics.map((pokemon) => {
       axios.get(pokemon.url).then((response) => {
@@ -38,20 +26,6 @@ const loadPokemons = async () => {
     console.log(error);
   });
 }
-
-const loadMorePokemons = async () => {
-  try {
-    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=${limit}`);
-    const newPokemons = response.data.results.map(async (pokemon) => {
-      const pokemonData = await axios.get(pokemon.url);
-      return pokemonData.data;
-    });
-    const loadedPokemons = await Promise.all(newPokemons);
-    store.state.pokemonsApi = [...store.state.pokemonsApi, ...loadedPokemons];
-  } catch (error) {
-    console.error('Erro ao carregar mais pokemons:', error);
-  }
-};
 
 const pokemons = computed(() => {
   const allPokemons = store?.state?.pokemonsApi ?? [];
@@ -126,13 +100,6 @@ const openModal = (pokemonId) => {
   modalInstance.show();
 };
 
-useInfiniteScroll(
-  el,
-  () => {
-    loadMorePokemons();
-    console.log(filteredPokemons.value.length);
-  }, { distance: 10 });
-
 async function getPokemonSpeciesData(pokemonId) {
   try {
     const response = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${pokemonId}`);
@@ -159,7 +126,7 @@ async function translatePokemonName(pokemonId, languageCode) {
 </script>
 
 <template>
-  <div ref="el" v-for="pokemon in filteredPokemons" :key="pokemon.id" class="card mt-4 mx-2 selected col"
+  <div v-for="pokemon in filteredPokemons" :key="pokemon.id" class="card mt-4 mx-2 selected col"
     style="width: 12rem; cursor: pointer" @click="openModal(pokemon.id)">
     <div>
       <div></div>
