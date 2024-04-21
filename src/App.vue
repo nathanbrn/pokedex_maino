@@ -24,7 +24,7 @@ const loadMorePokemons = async (limit, offset) => {
     const loadedPokemons = await Promise.all(newPokemons);
     store.state.pokemonsApi = [...store.state.pokemonsApi, ...loadedPokemons];
   } catch (error) {
-    console.error("Erro ao carregar mais pokemons:", error);
+    console.error(error);
   }
 };
 
@@ -38,7 +38,7 @@ useInfiniteScroll(
     try {
       onLoadNewPokemons();
     } catch (error) {
-      console.error("Erro ao carregar mais pokemons:", error);
+      console.error(error);
     }
   },
   { distance: 10 }

@@ -27,13 +27,17 @@ const onChangeIdioma = () => {
 };
 
 const availableTypes = computed(() => {
-  const types = new Set();
-  pokemons.value.forEach((pokemon) => {
-    pokemon.types.forEach((type) => {
-      types.add(type.type.name);
+  try {
+    const types = new Set();
+    pokemons.value.forEach((pokemon) => {
+      pokemon.types.forEach((type) => {
+        types.add(type.type.name);
+      });
     });
-  });
-  return Array.from(types);
+    return Array.from(types);
+  } catch (error) {
+    console.error(error);
+  }
 });
 </script>
 

@@ -12,7 +12,6 @@ onMounted(() => {
 });
 
 const loadPokemons = async (limit, offset) => {
-
   await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`).then((response) => {
     const generics = response.data.results;
     generics.map((pokemon) => {
@@ -28,7 +27,8 @@ const loadPokemons = async (limit, offset) => {
 }
 
 const pokemons = computed(() => {
-  const allPokemons = store?.state?.pokemonsApi ?? [];
+  try {
+    const allPokemons = store?.state?.pokemonsApi ?? [];
 
   const filteredPokemons = allPokemons.filter((pokemon) => {
     if (
@@ -70,6 +70,10 @@ const pokemons = computed(() => {
 
 
   return filteredPokemons;
+  } catch (error) {
+    console.error('Erro ao filtrar os pokémons:', error);
+    return [];
+  }
 });
 
 let nameFilter = "";
@@ -111,6 +115,7 @@ async function getPokemonSpeciesData(pokemonId) {
 }
 
 async function translatePokemonName(pokemonId, languageCode) {
+try {
   const pokemonSpeciesData = await getPokemonSpeciesData(pokemonId);
   if (!pokemonSpeciesData) {
     return null;
@@ -122,6 +127,10 @@ async function translatePokemonName(pokemonId, languageCode) {
   }
 
   return nameObject.name;
+} catch (error) {
+  console.error('Erro ao traduzir o nome do Pokémon:', error);
+  return null;
+}
 }
 </script>
 
