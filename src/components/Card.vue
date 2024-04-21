@@ -8,7 +8,7 @@ let offset = 0;
 let limit = 20;
 
 onMounted(() => {
-  loadPokemons();
+  loadPokemons(limit, offset);
 });
 
 const loadPokemons = async (limit, offset) => {

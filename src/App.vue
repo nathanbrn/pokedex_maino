@@ -29,7 +29,7 @@ const loadMorePokemons = async (limit, offset) => {
 };
 
 const onLoadNewPokemons = async () => {
-  await loadMorePokemons(20, store.state.pokemonsApi.length);
+  await loadMorePokemons(5, store.state.pokemonsApi.length);
 };
 
 useInfiniteScroll(
