@@ -88,6 +88,11 @@ const pokemons = computed(() => {
     return true;
   });
 
+  const languageCode = computed(() => store.state.language);
+  filteredPokemons.map(async (pokemon, index) => {
+    const translatedName = await translatePokemonName(pokemon.id, languageCode.value);
+    filteredPokemons[index].name = translatedName;
+  });
 
 
   return filteredPokemons;
