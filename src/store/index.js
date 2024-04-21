@@ -1,22 +1,8 @@
 import { createStore } from "vuex";
-import axios from "axios";
-
-// let pokemonsApi = [];
-// axios.get("https://pokeapi.co/api/v2/pokemon?limit=3").then((response) => {
-//   const generics = response.data.results;
-//   generics.map((pokemon) => {
-//     axios.get(pokemon.url).then((response) => {
-//       const pokemon = response.data;
-
-//       pokemonsApi.push(pokemon);
-//     })
-//   });
-// }).catch((error) => {
-//   console.log(error);
-// });
 
 export default createStore({
   state: {
+    language: null,
     CurrentId: null,
     pokemons: [
       {
@@ -414,6 +400,9 @@ export default createStore({
   },
   getters: {},
   mutations: {
+    setLanguage(state, language) {
+      state,language = language;
+    },
     setPokemons(state, pokemons) {
       state.pokemons = pokemons;
     },
