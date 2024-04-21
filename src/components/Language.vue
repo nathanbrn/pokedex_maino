@@ -7,23 +7,20 @@ const store = useStore();
 let language = ref(null);
 const onChangeLanguage = (event) => {
   language.value = event.target.value;
-}
-
-const handleUpdateLanguage = (event) => {
   store.state.language = language.value;
 }
 </script>
 
 <template>
   <div class="centralizar">
+    <h4>Selecione um idioma para os nomes dos pokemons</h4>
     <select class="form-select tamanho mb-2" aria-label="Default select example" @change="onChangeLanguage">
       <option selected>Selecione...</option>
-      <option value="en">en</option>
-      <option value="es">es</option>
-      <option value="pt-BR">pt</option>
-      <option value="ja">ja</option>
+      <option value="en">Inglês-EN</option>
+      <option value="es">Espanhol-ES</option>
+      <option value="pt-BR">Português-BR</option>
+      <option value="ja">Japonês-JA</option>
     </select>
-    <button type="button" class="btn btn-primary btn-lg" @click="handleUpdateLanguage">Selecionar</button>
   </div>
 </template>
 
