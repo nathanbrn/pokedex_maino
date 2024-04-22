@@ -145,12 +145,11 @@ async function translatePokemonName(pokemonId, languageCode) {
   <div
     v-for="pokemon in filteredPokemons"
     :key="pokemon.id"
-    class="card mt-4 mx-2 selected col h-100"
+    class="card mt-4 mx-2 selected col"
     style="width: 12rem; cursor: pointer"
     @click="openModal(pokemon.id)"
   >
     <div>
-      <div></div>
       <div class="p-3">
         <div>
           <img

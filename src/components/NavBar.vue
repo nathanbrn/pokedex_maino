@@ -50,7 +50,7 @@ const availableTypes = computed(() => {
         style="cursor: default"
         href=""
       >
-        <img width="20px" src="../assets/pokebola.png" alt="" />
+        <img width="20px" src="/pokebola.png" alt="" />
         Pokedex
       </a>
       <button

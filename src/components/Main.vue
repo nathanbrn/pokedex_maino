@@ -64,12 +64,9 @@ onMounted(() => {
       <Modal />
     </div>
     <div class="d-flex align-items-center justify-content-center h-25">
-      <img
-        width="50"
-        v-if="store.state.loading"
-        src="../assets/loading.gif"
-        alt=""
-      />
+      <div class="spinner-border text-secondary" role="status" v-if="store.state.loading">
+        <span class="visually-hidden">Loading...</span>
+      </div>
     </div>
   </div>
 </template>
