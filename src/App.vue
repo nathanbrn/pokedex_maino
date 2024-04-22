@@ -24,7 +24,6 @@ const loadMorePokemons = async (limit) => {
     }));
 
     store.state.pokemonsApi = newPokemons;
-    console.log(limit);
   } catch (error) {
     console.error(error);
   }
