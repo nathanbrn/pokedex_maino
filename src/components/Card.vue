@@ -34,7 +34,7 @@ const pokemons = computed(() => {
     const filteredPokemons = allPokemons.filter((pokemon) => {
       if (
         store.state.nameFilter &&
-        !pokemon.name.includes(store.state.nameFilter)
+        !new RegExp(store.state.nameFilter, 'i').test(pokemon.name)
       ) {
         return false;
       }
@@ -86,9 +86,7 @@ let speciesFilter = "";
 
 const filteredPokemons = computed(() => {
   return pokemons.value.filter((pokemon) => {
-    const nameMatch = pokemon.name
-      .toLowerCase()
-      .includes(nameFilter.toLowerCase());
+    const nameMatch = new RegExp(nameFilter, 'i').test(pokemon.name);
     const idMatch = pokemon.id.toString().includes(idFilter);
     const typeMatch =
       !typeFilter ||
