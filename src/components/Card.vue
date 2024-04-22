@@ -4,24 +4,22 @@ import { useStore } from "vuex";
 import axios from "axios";
 
 const store = useStore();
-let offset = 0;
 let limit = 20;
 
 onMounted(() => {
-  loadPokemons(limit, offset);
+  loadPokemons(limit);
 });
 
-const loadPokemons = async (limit, offset) => {
+const loadPokemons = async (limit) => {
   try {
     const response = await axios.get(
-      `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
+      `https://pokeapi.co/api/v2/pokemon?limit=${limit}`
     );
     const generics = response.data.results;
     for (const pokemon of generics) {
       try {
         const pokemonData = await axios.get(pokemon.url);
         const newPokemon = pokemonData.data;
-        // Verificar se o novo Pokémon já existe na lista
         const existingPokemonIndex = store.state.pokemonsApi.findIndex(
           (p) => p.id === newPokemon.id
         );

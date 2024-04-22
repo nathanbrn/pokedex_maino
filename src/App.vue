@@ -11,11 +11,12 @@ import axios from "axios";
 const store = useStore();
 
 const el = ref(null);
+let limit = 30;
 
 const loadMorePokemons = async (limit, offset) => {
   try {
     const response = await axios.get(
-      `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
+      `https://pokeapi.co/api/v2/pokemon?limit=${limit}`
     );
     const newPokemons = response.data.results.map(async (pokemon) => {
       const pokemonData = await axios.get(pokemon.url);
@@ -23,13 +24,15 @@ const loadMorePokemons = async (limit, offset) => {
     });
     const loadedPokemons = await Promise.all(newPokemons);
     store.state.pokemonsApi = [...store.state.pokemonsApi, ...loadedPokemons];
+
+    limit += 10;
   } catch (error) {
     console.error(error);
   }
 };
 
 const onLoadNewPokemons = async () => {
-  await loadMorePokemons(10, store.state.pokemonsApi.length);
+  await loadMorePokemons(limit);
 };
 
 useInfiniteScroll(
