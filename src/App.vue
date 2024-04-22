@@ -77,7 +77,7 @@ setInterval(() => {
     >
       Carregar mais pokemons...
     </button> -->
-    <img width="50" v-if="loading && store.state.language" src="https://i.gifer.com/ZKZg.gif" alt="" />
+    <img width="50" v-if="loading && store.state.language" src="./assets/loading.gif" alt="" />
   </div>
   <Language v-if="!store.state.language" />
 </template>
