@@ -1,27 +1,27 @@
 <script setup>
-import { ref } from "vue";
 import NavBar from "./components/NavBar.vue";
 import Card from "./components/Card.vue";
 import Modal from "./components/Modal.vue";
 import Language from "./components/Language.vue";
 import { useStore } from "vuex";
-import { useInfiniteScroll } from "@vueuse/core";
 import axios from "axios";
 
 const store = useStore();
 
-const el = ref(null);
 let limit = 30;
+let loading = true;
 
 const loadMorePokemons = async (limit) => {
   try {
     const response = await axios.get(
       `https://pokeapi.co/api/v2/pokemon?limit=${limit}`
     );
-    const newPokemons = await Promise.all(response.data.results.map(async (pokemon) => {
-      const pokemonData = await axios.get(pokemon.url);
-      return pokemonData.data;
-    }));
+    const newPokemons = await Promise.all(
+      response.data.results.map(async (pokemon) => {
+        const pokemonData = await axios.get(pokemon.url);
+        return pokemonData.data;
+      })
+    );
 
     store.state.pokemonsApi = newPokemons;
   } catch (error) {
@@ -31,29 +31,53 @@ const loadMorePokemons = async (limit) => {
 
 const onLoadNewPokemons = async () => {
   await loadMorePokemons(limit);
+  limit += 10;
 };
 
-useInfiniteScroll(
-  el,
-  () => {
-    try {
-      onLoadNewPokemons();
-      limit += 10;
-    } catch (error) {
-      console.error(error);
-    }
-  },
-  { distance: 10 }
-);
+setInterval(() => {
+  loading = false;
+  onLoadNewPokemons();
+
+  loading = true;
+}, 4000);
+
+// import { ref } from "vue";
+// import { useInfiniteScroll } from "@vueuse/core";
+
+// const el = ref(null);
+// useInfiniteScroll(
+//   el,
+//   () => {
+//     try {
+//       onLoadNewPokemons();
+//     } catch (error) {
+//       console.error(error);
+//     }
+//   },
+//   { distance: 10 }
+// );
 </script>
 
 <template>
   <NavBar v-if="store.state.language" />
-  <div ref="el" v-if="store.state.language" class="container">
-    <div class="mt-2 row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+  <div v-if="store.state.language" class="container">
+    <div
+      class="mt-2 row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4 border-1 border-black"
+    >
       <Card />
       <Modal />
     </div>
+  </div>
+  <div class="w-100 d-flex justify-content-center align-items-center my-3">
+    <!-- <button
+      v-if="store.state.language"
+      type="button"
+      class="btn btn-outline-primary w-100 h-100"
+      @click="onLoadNewPokemons"
+    >
+      Carregar mais pokemons...
+    </button> -->
+    <img width="50" v-if="loading && store.state.language" src="https://i.gifer.com/ZKZg.gif" alt="" />
   </div>
   <Language v-if="!store.state.language" />
 </template>

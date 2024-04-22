@@ -10,30 +10,20 @@ onMounted(() => {
   loadPokemons(limit);
 });
 
-const loadPokemons = async (limit) => {
-  try {
-    const response = await axios.get(
-      `https://pokeapi.co/api/v2/pokemon?limit=${limit}`
-    );
+const loadPokemons = async (limit, offset) => {
+  await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`).then((response) => {
     const generics = response.data.results;
-    for (const pokemon of generics) {
-      try {
-        const pokemonData = await axios.get(pokemon.url);
-        const newPokemon = pokemonData.data;
-        const existingPokemonIndex = store.state.pokemonsApi.findIndex(
-          (p) => p.id === newPokemon.id
-        );
-        if (existingPokemonIndex === -1) {
-          store.state.pokemonsApi.push(newPokemon);
-        }
-      } catch (error) {
-        console.error(`Erro ao carregar dados do Pokémon ${pokemon.name}:`, error);
-      }
-    }
-  } catch (error) {
-    console.error("Erro ao carregar a lista de pokémons:", error);
-  }
-};
+    generics.map((pokemon) => {
+      axios.get(pokemon.url).then((response) => {
+        const pokemon = response.data;
+        const storePokemons = store.state.pokemonsApi;
+        store.state.pokemonsApi = [...storePokemons, pokemon];
+      })
+    });
+  }).catch((error) => {
+    console.log(error);
+  });
+}
 
 const pokemons = computed(() => {
   try {
