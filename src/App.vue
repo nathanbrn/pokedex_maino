@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from "vue";
 import NavBar from "./components/NavBar.vue";
 import Card from "./components/Card.vue";
 import Modal from "./components/Modal.vue";
@@ -29,6 +30,7 @@ const loadMorePokemons = async (limit) => {
   }
 };
 
+
 const onLoadNewPokemons = async () => {
   await loadMorePokemons(limit);
   limit += 10;
@@ -39,9 +41,8 @@ setInterval(() => {
   onLoadNewPokemons();
 
   loading = true;
-}, 4000);
+}, 5000);
 
-// import { ref } from "vue";
 // import { useInfiniteScroll } from "@vueuse/core";
 
 // const el = ref(null);
@@ -60,7 +61,7 @@ setInterval(() => {
 
 <template>
   <NavBar v-if="store.state.language" />
-  <div v-if="store.state.language" class="container">
+  <div id="scrollContainer" v-if="store.state.language" class="container">
     <div
       class="mt-2 row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4 border-1 border-black"
     >
@@ -68,7 +69,10 @@ setInterval(() => {
       <Modal />
     </div>
   </div>
-  <div class="w-100 d-flex justify-content-center align-items-center my-3">
+  <div
+    v-if="store.state.language"
+    class="w-100 d-flex justify-content-center align-items-center my-3"
+  >
     <!-- <button
       v-if="store.state.language"
       type="button"
@@ -77,7 +81,12 @@ setInterval(() => {
     >
       Carregar mais pokemons...
     </button> -->
-    <img width="50" v-if="loading && store.state.language" src="./assets/loading.gif" alt="" />
+    <img
+      width="50"
+      v-if="loading"
+      src="./assets/loading.gif"
+      alt=""
+    />
   </div>
   <Language v-if="!store.state.language" />
 </template>
