@@ -1,13 +1,15 @@
 <script setup>
 import Card from "./Card.vue";
 import Modal from "./Modal.vue";
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { useStore } from "vuex";
 import axios from "axios";
 
 const store = useStore();
 
 store.state.limit = 30;
+
+const loading = ref(false);
 
 const loadMorePokemons = async (limit) => {
   try {
@@ -28,8 +30,10 @@ const loadMorePokemons = async (limit) => {
 };
 
 const onLoadNewPokemons = async () => {
+  loading.value = true;
   await loadMorePokemons(store.state.limit);
   store.state.limit += 10;
+  loading.value = false;
 };
 
 onMounted(() => {
@@ -44,13 +48,15 @@ onMounted(() => {
       if (scrollPosition >= scrollHeight) {
         store.state.loading = false;
         onLoadNewPokemons();
-
-        store.state.loading = true;
       }
     },
     false
   );
 });
+
+const onInputOrFilter = () => {
+  loading.value = true;
+};
 </script>
 
 <template>
@@ -58,13 +64,14 @@ onMounted(() => {
     id="scrollContainer"
     v-if="store.state.language"
     class="overflow-y-scroll h-100 overflow-x-hidden px-4 py-5"
+    @input="onInputOrFilter"
   >
     <div class="mt-2 row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
       <Card />
       <Modal />
     </div>
     <div class="d-flex align-items-center justify-content-center h-25">
-      <div class="spinner-border text-secondary" role="status" v-if="store.state.loading">
+      <div class="spinner-border text-secondary" role="status" v-if="loading">
         <span class="visually-hidden">Loading...</span>
       </div>
     </div>
