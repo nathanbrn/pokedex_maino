@@ -4,10 +4,9 @@ import { useStore } from "vuex";
 import axios from "axios";
 
 const store = useStore();
-let limit = 20;
 
 onMounted(() => {
-  loadPokemons(limit);
+  loadPokemons(store.state.limit);
 });
 
 const loadPokemons = async (limit, offset) => {
@@ -146,7 +145,7 @@ async function translatePokemonName(pokemonId, languageCode) {
   <div
     v-for="pokemon in filteredPokemons"
     :key="pokemon.id"
-    class="card mt-4 mx-2 selected col"
+    class="card mt-4 mx-2 selected col h-100"
     style="width: 12rem; cursor: pointer"
     @click="openModal(pokemon.id)"
   >

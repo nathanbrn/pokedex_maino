@@ -11,6 +11,8 @@ export default createStore({
     typeFilter: null,
     speciesFilter: null,
     evolutions: [],
+    loading: true,
+    limit: 20,
   },
   getters: {},
   mutations: {
