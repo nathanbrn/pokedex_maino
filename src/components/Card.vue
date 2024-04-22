@@ -12,19 +12,30 @@ onMounted(() => {
 });
 
 const loadPokemons = async (limit, offset) => {
-  await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`).then((response) => {
+  try {
+    const response = await axios.get(
+      `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
+    );
     const generics = response.data.results;
-    generics.map((pokemon) => {
-      axios.get(pokemon.url).then((response) => {
-        const pokemon = response.data;
-        const storePokemons = store.state.pokemonsApi;
-        store.state.pokemonsApi = [...storePokemons, pokemon];
-      })
-    });
-  }).catch((error) => {
-    console.log(error);
-  });
-}
+    for (const pokemon of generics) {
+      try {
+        const pokemonData = await axios.get(pokemon.url);
+        const newPokemon = pokemonData.data;
+        // Verificar se o novo Pokémon já existe na lista
+        const existingPokemonIndex = store.state.pokemonsApi.findIndex(
+          (p) => p.id === newPokemon.id
+        );
+        if (existingPokemonIndex === -1) {
+          store.state.pokemonsApi.push(newPokemon);
+        }
+      } catch (error) {
+        console.error(`Erro ao carregar dados do Pokémon ${pokemon.name}:`, error);
+      }
+    }
+  } catch (error) {
+    console.error("Erro ao carregar a lista de pokémons:", error);
+  }
+};
 
 const pokemons = computed(() => {
   try {
@@ -109,7 +120,7 @@ async function getPokemonSpeciesData(pokemonId) {
     const response = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${pokemonId}`);
     return response.data;
   } catch (error) {
-    console.error('Erro ao obter os dados da espécie do Pokémon:', error);
+    console.error('Erro ao obter os dados da espécie do Pokémon:');
     return null;
   }
 }
