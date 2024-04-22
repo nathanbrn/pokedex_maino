@@ -11,66 +11,71 @@ onMounted(() => {
 });
 
 const loadPokemons = async (limit, offset) => {
-  await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`).then((response) => {
-    const generics = response.data.results;
-    generics.map((pokemon) => {
-      axios.get(pokemon.url).then((response) => {
-        const pokemon = response.data;
-        const storePokemons = store.state.pokemonsApi;
-        store.state.pokemonsApi = [...storePokemons, pokemon];
-      })
+  await axios
+    .get(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`)
+    .then((response) => {
+      const generics = response.data.results;
+      generics.map((pokemon) => {
+        axios.get(pokemon.url).then((response) => {
+          const pokemon = response.data;
+          const storePokemons = store.state.pokemonsApi;
+          store.state.pokemonsApi = [...storePokemons, pokemon];
+        });
+      });
+    })
+    .catch((error) => {
+      console.log(error);
     });
-  }).catch((error) => {
-    console.log(error);
-  });
-}
+};
 
 const pokemons = computed(() => {
   try {
     const allPokemons = store?.state?.pokemonsApi ?? [];
 
-  const filteredPokemons = allPokemons.filter((pokemon) => {
-    if (
-      store.state.nameFilter &&
-      !pokemon.name.includes(store.state.nameFilter)
-    ) {
-      return false;
-    }
+    const filteredPokemons = allPokemons.filter((pokemon) => {
+      if (
+        store.state.nameFilter &&
+        !pokemon.name.includes(store.state.nameFilter)
+      ) {
+        return false;
+      }
 
-    if (
-      store.state.idFilter &&
-      pokemon.id.toString() !== store.state.idFilter
-    ) {
-      return false;
-    }
+      if (
+        store.state.idFilter &&
+        pokemon.id.toString() !== store.state.idFilter
+      ) {
+        return false;
+      }
 
-    if (
-      store.state.typeFilter &&
-      !pokemon.types.find((type) => type.type.name === store.state.typeFilter)
-    ) {
-      return false;
-    }
+      if (
+        store.state.typeFilter &&
+        !pokemon.types.find((type) => type.type.name === store.state.typeFilter)
+      ) {
+        return false;
+      }
 
-    if (
-      store.state.speciesFilter &&
-      pokemon.species.name !== store.state.speciesFilter
-    ) {
-      return false;
-    }
+      if (
+        store.state.speciesFilter &&
+        pokemon.species.name !== store.state.speciesFilter
+      ) {
+        return false;
+      }
 
-    return true;
-  });
+      return true;
+    });
 
-  const languageCode = computed(() => store.state.language);
-  filteredPokemons.map(async (pokemon, index) => {
-    const translatedName = await translatePokemonName(pokemon.id, languageCode.value);
-    filteredPokemons[index].name = translatedName;
-  });
+    const languageCode = computed(() => store.state.language);
+    filteredPokemons.map(async (pokemon, index) => {
+      const translatedName = await translatePokemonName(
+        pokemon.id,
+        languageCode.value
+      );
+      filteredPokemons[index].name = translatedName;
+    });
 
-
-  return filteredPokemons;
+    return filteredPokemons;
   } catch (error) {
-    console.error('Erro ao filtrar os pokémons:', error);
+    console.error("Erro ao filtrar os pokémons:", error);
     return [];
   }
 });
@@ -105,42 +110,55 @@ const openModal = (pokemonId) => {
 
 async function getPokemonSpeciesData(pokemonId) {
   try {
-    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${pokemonId}`);
+    const response = await axios.get(
+      `https://pokeapi.co/api/v2/pokemon-species/${pokemonId}`
+    );
     return response.data;
   } catch (error) {
-    console.error('Erro ao obter os dados da espécie do Pokémon:');
+    console.error("Erro ao obter os dados da espécie do Pokémon:");
     return null;
   }
 }
 
 async function translatePokemonName(pokemonId, languageCode) {
-try {
-  const pokemonSpeciesData = await getPokemonSpeciesData(pokemonId);
-  if (!pokemonSpeciesData) {
+  try {
+    const pokemonSpeciesData = await getPokemonSpeciesData(pokemonId);
+    if (!pokemonSpeciesData) {
+      return null;
+    }
+
+    const nameObject = pokemonSpeciesData.names.find(
+      (name) => name.language.name === languageCode
+    );
+    if (!nameObject) {
+      return pokemonSpeciesData.name;
+    }
+
+    return nameObject.name;
+  } catch (error) {
+    console.error("Erro ao traduzir o nome do Pokémon:", error);
     return null;
   }
-
-  const nameObject = pokemonSpeciesData.names.find(name => name.language.name === languageCode);
-  if (!nameObject) {
-    return pokemonSpeciesData.name;
-  }
-
-  return nameObject.name;
-} catch (error) {
-  console.error('Erro ao traduzir o nome do Pokémon:', error);
-  return null;
-}
 }
 </script>
 
 <template>
-  <div v-for="pokemon in filteredPokemons" :key="pokemon.id" class="card mt-4 mx-2 selected col"
-    style="width: 12rem; cursor: pointer" @click="openModal(pokemon.id)">
+  <div
+    v-for="pokemon in filteredPokemons"
+    :key="pokemon.id"
+    class="card mt-4 mx-2 selected col"
+    style="width: 12rem; cursor: pointer"
+    @click="openModal(pokemon.id)"
+  >
     <div>
       <div></div>
       <div class="p-3">
         <div>
-          <img :src="pokemon.sprites.other.dream_world.front_default" class="d-block w-100" :alt="pokemon.name" />
+          <img
+            :src="pokemon.sprites.other.dream_world.front_default"
+            class="d-block w-100"
+            :alt="pokemon.name"
+          />
         </div>
       </div>
     </div>

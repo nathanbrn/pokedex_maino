@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import NavBar from "./components/NavBar.vue";
 import Card from "./components/Card.vue";
 import Modal from "./components/Modal.vue";
@@ -30,7 +30,6 @@ const loadMorePokemons = async (limit) => {
   }
 };
 
-
 const onLoadNewPokemons = async () => {
   await loadMorePokemons(limit);
   limit += 10;
@@ -41,7 +40,11 @@ setInterval(() => {
   onLoadNewPokemons();
 
   loading = true;
-}, 5000);
+}, 3000);
+
+onMounted(() => {
+  store.state.language = localStorage.getItem("language");
+});
 
 // import { useInfiniteScroll } from "@vueuse/core";
 
@@ -70,6 +73,7 @@ setInterval(() => {
     </div>
   </div>
   <div
+    id="containerLoad"
     v-if="store.state.language"
     class="w-100 d-flex justify-content-center align-items-center my-3"
   >
@@ -81,12 +85,7 @@ setInterval(() => {
     >
       Carregar mais pokemons...
     </button> -->
-    <img
-      width="50"
-      v-if="loading"
-      src="./assets/loading.gif"
-      alt=""
-    />
+    <img width="50" v-if="loading" src="./assets/loading.gif" alt="" />
   </div>
   <Language v-if="!store.state.language" />
 </template>

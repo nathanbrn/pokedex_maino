@@ -9,6 +9,7 @@ const onChangeLanguage = (event) => {
   try {
     language.value = event.target.value;
     store.state.language = language.value;
+    localStorage.setItem("language", language.value);
   } catch (error) {
     console.error(error);
   }

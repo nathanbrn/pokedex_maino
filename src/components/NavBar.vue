@@ -23,7 +23,8 @@ const updateSpeciesFilter = (event) => {
 };
 
 const onChangeIdioma = () => {
-  window.location.reload();
+  store.state.language = null;
+  localStorage.clear
 };
 
 const availableTypes = computed(() => {
